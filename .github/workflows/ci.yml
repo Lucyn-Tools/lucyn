@@ -6,80 +6,55 @@ on:
   pull_request:
     branches: [main]
 
-permissions:
-  contents: read
-  pull-requests: read
-
 concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.head_ref || github.ref }}
+  group: ci-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  NODE_VERSION: '20'
+
 jobs:
-  typecheck:
-    name: Typecheck & Lint
+  check:
+    name: Check
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 10
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
       - name: Generate Prisma client
-        run: pnpm --filter "@lucyn/db" run db:generate
+        run: pnpm --filter @lucyn/db exec prisma generate
         env:
-          DATABASE_URL: postgresql://lucyn:lucyn@localhost:5432/lucyn
+          # prisma generate reads the schema but does not connect.
+          # Placeholder prevents CI failing before DATABASE_URL is configured.
+          DATABASE_URL: ${{ secrets.DATABASE_URL || 'postgresql://placeholder:placeholder@localhost:5432/lucyn' }}
 
-      - name: Typecheck — compression
-        run: pnpm --filter "@lucyn/compression" run typecheck
+      - name: Typecheck
+        run: pnpm typecheck
 
-      - name: Typecheck — github
-        run: pnpm --filter "@lucyn/github" run typecheck
+      - name: Lint
+        run: pnpm lint
 
-      - name: Typecheck — ai
-        run: pnpm --filter "@lucyn/ai" run typecheck
-
-      - name: Typecheck — discord-bot
-        run: pnpm --filter "discord-bot" run typecheck
-
-      - name: Typecheck — web app
-        run: pnpm --filter "web" run typecheck
-
-  build:
-    name: Build web app
-    runs-on: ubuntu-latest
-    needs: typecheck
-    env:
-      DATABASE_URL: postgresql://lucyn:lucyn@localhost:5432/lucyn
-      NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: pk_test_placeholder
-      CLERK_SECRET_KEY: sk_test_placeholder
-      ANTHROPIC_API_KEY: placeholder
-      NEXT_PUBLIC_APP_URL: http://localhost:3000
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 10
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'pnpm'
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Generate Prisma client
-        run: pnpm --filter "@lucyn/db" run db:generate
-
-      - name: Build web app
-        run: pnpm --filter "web" run build
+      - name: Build
+        run: pnpm build
+        env:
+          # Placeholders prevent build failure before real secrets are added.
+          DATABASE_URL: ${{ secrets.DATABASE_URL || 'postgresql://placeholder:placeholder@localhost:5432/lucyn' }}
+          # Clerk validates key format at build time (base64url of a domain + '$').
+          # pk_test_Y2xlcmsubG9jYWxob3N0JA = base64url('clerk.localhost$') — passes format check without connecting.
+          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || 'pk_test_Y2xlcmsubG9jYWxob3N0JA' }}
+          CLERK_SECRET_KEY: ${{ secrets.CLERK_SECRET_KEY || 'sk_test_placeholder' }}
+          NEXT_PUBLIC_APP_URL: ${{ vars.NEXT_PUBLIC_APP_URL || 'http://localhost:3000' }}
