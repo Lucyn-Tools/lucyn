@@ -8,7 +8,6 @@ export type {
   Commit,
   PullRequest,
   PRState,
-  PRFeedback,
   Meeting,
   MeetingType,
   Task,

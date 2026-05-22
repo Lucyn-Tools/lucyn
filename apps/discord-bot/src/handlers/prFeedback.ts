@@ -55,15 +55,6 @@ End with: "Reply \`skip\` to opt out of feedback for this PR."
     const dm = await discordUser.createDM();
 
     await dm.send(`**Lucyn — PR Feedback for #${prNumber}**\n\n${feedback}`);
-
-    await prisma.pRFeedback.create({
-      data: {
-        prId: prNumber.toString(),
-        feedbackType: "commit_hygiene",
-        content: feedback,
-        sentViaDiscord: true,
-      },
-    });
   } catch (err) {
     console.error(`[lucyn-bot] Failed to send DM to ${githubLogin}:`, err);
   }
