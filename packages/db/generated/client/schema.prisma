@@ -5,7 +5,6 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 // ─── MULTI-TENANT ────────────────────────────────────────────
@@ -119,27 +118,14 @@ model PullRequest {
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
 
-  repo         Repository   @relation(fields: [repoId], references: [id])
-  author       Developer    @relation(fields: [authorId], references: [id])
-  feedbackSent PRFeedback[]
+  repo   Repository @relation(fields: [repoId], references: [id])
+  author Developer  @relation(fields: [authorId], references: [id])
 }
 
 enum PRState {
   OPEN
   CLOSED
   MERGED
-}
-
-model PRFeedback {
-  id             String   @id @default(cuid())
-  prId           String
-  feedbackType   String
-  content        String
-  sentViaDiscord Boolean  @default(false)
-  accepted       Boolean?
-  createdAt      DateTime @default(now())
-
-  pr PullRequest @relation(fields: [prId], references: [id])
 }
 
 // ─── MEETINGS ─────────────────────────────────────────────────
@@ -217,14 +203,15 @@ model Sprint {
 // ─── AI MEMORY ────────────────────────────────────────────────
 
 model Embedding {
-  id         String          @id @default(cuid())
+  id         String                       @id @default(cuid())
   orgId      String
   repoId     String?
   sourceType EmbeddingSource
   sourceId   String
   content    String
-  metadata   Json            @default("{}")
-  createdAt  DateTime        @default(now())
+  vector     Unsupported("vector(1536)")?
+  metadata   Json                         @default("{}")
+  createdAt  DateTime                     @default(now())
 
   org  Organization @relation(fields: [orgId], references: [id])
   repo Repository?  @relation(fields: [repoId], references: [id])
