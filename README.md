@@ -1,156 +1,179 @@
-# Lucyn — AI Product Engineer
+<div align="center">
 
-Lucyn is an AI Product Engineer embedded inside software companies. It gives engineering leadership real-time visibility into delivery health, developer capacity, and technical risk — while providing private, contextual guidance to individual developers.
+# Lucyn
 
-## What Lucyn Does
+**The institutional memory of your company.**
 
-**For leadership** — A web dashboard showing engineering health metrics, sprint velocity, PR throughput, and risk signals. An AI chatbot that answers any question about the engineering org using your actual data (commits, PRs, meetings).
+Lucyn turns scattered company knowledge into a living, connected map
+of how your company actually works — then makes it searchable,
+queryable, and actionable.
 
-**For developers** — A private Discord bot that reviews PRs, gives commit feedback, and answers engineering questions. All feedback is sent as DMs, never public, never comparative.
+![Build](https://img.shields.io/github/actions/workflow/status/Lucyn-Tools/Lucyn/ci.yml?branch=main&label=CI&style=flat-square)
+![License](https://img.shields.io/badge/license-Proprietary-red?style=flat-square)
+![TypeScript](https://img.shields.io/badge/TypeScript-100%25-3178c6?style=flat-square&logo=typescript&logoColor=white)
+![Powered by Claude](https://img.shields.io/badge/Powered%20by-Claude%20AI-D4A27F?style=flat-square)
+![Vercel](https://img.shields.io/badge/Web-Vercel-000000?style=flat-square&logo=vercel&logoColor=white)
+![Railway](https://img.shields.io/badge/Bot-Railway-0B0D0E?style=flat-square&logo=railway&logoColor=white)
 
-**For meetings** — A Google Meet agent (coming soon) that joins SCRUM and planning sessions, extracts goals and blockers, and posts structured summaries back to the dashboard.
+</div>
 
 ---
 
-## Architecture
+## What is Lucyn?
+
+Most companies lose knowledge constantly — decisions disappear into meeting transcripts nobody reads, critical systems are understood by one person, and new hires spend months piecing together context that should be written down somewhere. Lucyn connects to GitHub, Discord, and Google Meet, ingests commits, pull requests, conversations, and meeting transcripts continuously, and builds a structured knowledge graph of how your company actually works. Ask it anything in plain English — who knows the payments service, what was decided in last week's planning meeting, where your knowledge gaps are — and get grounded, cited answers in seconds. Unlike a wiki or a search tool, Lucyn acts on what it knows: it surfaces decisions, maps knowledge ownership, and recommends actions that still require human approval before anything happens.
+
+---
+
+## The Problem
+
+| The knowledge loss | What happens today |
+|---|---|
+| Decisions made in meetings | Disappear into transcripts nobody reads |
+| Critical systems understood by one person | Bus factor 1, discovered when they leave |
+| New hires onboarding | Weeks of piecing together context that should be written down |
+| Why something was built a certain way | Nobody remembers, the Slack thread is gone |
+| Who to ask about a specific part of the product | Whoever shouts loudest or has been here longest |
+
+---
+
+## How Lucyn Works
+
+**1. Ingests**
+Lucyn connects to GitHub, Discord, and Google Meet. It reads commits, pull requests, meeting transcripts, and conversations continuously — not as a one-time import but as a living feed.
+
+**2. Maps**
+Everything ingested is classified, embedded, and written into a structured knowledge graph stored as human-readable Markdown files in an Obsidian-compatible vault. Repositories, developers, decisions, and meetings become connected nodes you can navigate.
+
+**3. Answers**
+Ask Lucyn anything about your company in plain English. It retrieves the relevant context from the knowledge graph and answers with citations. Who knows the payments service? What was decided in last week's planning meeting? Where are our knowledge gaps? Answered in seconds, not sprint reviews.
+
+---
+
+## The Three Surfaces
+
+<table>
+<tr>
+<td width="33%" valign="top">
+
+### Chat
+**Ask anything.**
+
+The primary interface. Ask Lucyn anything about your company
+and get a grounded, cited answer drawn from everything it has
+ingested. Decisions, people, code, meetings — all connected.
+
+</td>
+<td width="33%" valign="top">
+
+### Dashboard
+**See what's happening.**
+
+A live view of company knowledge health. What the team is
+working on, where knowledge gaps exist, which systems have
+bus factor 1, and what decisions are still open.
+
+</td>
+<td width="33%" valign="top">
+
+### Knowledge Vault
+**The company brain, made visible.**
+
+Every repository, developer, decision, and sprint recorded
+as structured Markdown in an Obsidian-compatible vault.
+Human-readable, editable, and continuously updated.
+
+</td>
+</tr>
+</table>
+
+---
+
+## Stack
+
+- **Web app**: Next.js 15 + Clerk auth + Tailwind CSS, deployed on Vercel
+- **Discord bot**: discord.js v14, deployed on Railway
+- **Database**: PostgreSQL on Railway, accessed via Prisma + pgvector
+- **AI**: Anthropic Claude (Sonnet for analysis, Haiku for summaries, Opus for complex reasoning)
+- **Auth**: Clerk (multi-tenant, org-aware)
+- **Monorepo**: pnpm workspaces + Turborepo
+
+---
+
+## Repo Structure
 
 ```
 lucyn/
 ├── apps/
-│   ├── web/              # Next.js 15 App Router — Vercel
-│   └── discord-bot/      # discord.js bot — Railway
+│   ├── web/           → Next.js dashboard + chat interface (Vercel)
+│   └── discord-bot/   → Company knowledge signals from Discord (Railway)
 ├── packages/
-│   ├── db/               # Prisma schema + PostgreSQL client
-│   ├── ai/               # Claude AI reasoning, RAG, embeddings
-│   ├── github/           # GitHub data ingestion + analysis
-│   └── compression/      # Token compression utilities
+│   ├── db/            → Prisma schema + Railway PostgreSQL + pgvector
+│   ├── ai/            → Claude reasoning, RAG, embeddings, knowledge retrieval
+│   ├── github/        → GitHub ingestion + webhook processing
+│   └── compression/   → LucynCompress — token compression for AI calls
+└── .github/
+    └── workflows/     → CI (ci.yml) + database migrations (migrate.yml)
 ```
 
-- **Web app**: Next.js 15 + Clerk auth + Tailwind CSS, deployed on Vercel
-- **Discord bot**: discord.js, deployed on Railway
-- **Database**: PostgreSQL on Railway, accessed via Prisma
-- **AI**: Anthropic Claude (Sonnet for analysis, Haiku for summaries, Opus for complex reasoning)
-- **Auth**: Clerk (multi-tenant, org-aware)
+---
+
+## Roadmap
+
+**Phase 1 — Foundation (Weeks 1–4)**
+- [x] Monorepo architecture (pnpm + Turborepo)
+- [x] Database schema — multi-tenant, pgvector enabled (Railway)
+- [x] Proprietary license
+- [x] Clerk authentication
+- [ ] GitHub App creation
+- [x] Next.js app shell
+- [ ] Discord bot service on Railway
+- [ ] Vercel deployment
+**Phase 2 — Knowledge Layer (Weeks 5–8)**
+- [ ] GitHub webhook receiver
+- [ ] Commit and PR ingestion pipeline
+- [ ] Developer knowledge profile builder
+- [ ] Knowledge classification engine
+- [ ] Embedding pipeline
+- [ ] RAG retrieval system
+- [ ] Company brain vault — repository pages
+- [ ] Company brain vault — developer knowledge pages
+- [ ] Company brain vault — decision and sprint records
+- [ ] Knowledge ownership map
+**Phase 3 — Surfaces (Weeks 9–12)**
+- [ ] Company knowledge dashboard
+- [ ] Company knowledge directory (people)
+- [ ] Service knowledge map (repositories)
+- [ ] Company brain chat interface
+- [ ] Knowledge retrieval API
+- [ ] Discord bot + developer linking
+- [ ] Task recommendation engine
+- [ ] Task approval interface
+- [ ] Onboarding flow
+**Later**
+- [ ] Slack ingestion
+- [ ] Notion / Confluence document ingestion
+- [ ] Google Meet agent (live meeting participation)
+- [ ] Knowledge graph visualisation
+- [ ] Cross-company knowledge benchmarks (opt-in)
+
+## Privacy and Trust
+
+Lucyn handles sensitive company data. These are non-negotiable:
+- **Knowledge is org-scoped.** No data is ever shared across organisations. Every query, every retrieval, every stored embedding is scoped to the authenticated org.
+- **Developer knowledge profiles are private.** They are never shown to managers as performance data. They exist to route knowledge and work correctly — not to evaluate people.
+- **No surveillance.** Lucyn observes activity to build knowledge maps, not to monitor individuals. There are no individual productivity scores.
+- **Human approval always.** Every suggested action — task assignment, escalation, follow-up — requires human approval before anything happens.
+- **GDPR-compliant by design.** Data handling is built around privacy from the ground up, not bolted on later.
 
 ---
 
-## Local Development
+## Contributing
+Lucyn is proprietary software in active development.
+External contributions are not open at this time.
 
-### Prerequisites
-
-- Node.js 20+
-- pnpm 10+
-- PostgreSQL database (local or Railway)
-
-### Setup
-
-```bash
-# Install dependencies
-pnpm install
-
-# Copy environment variables
-cp .env.example apps/web/.env.local
-# Fill in the required values (see Environment Variables below)
-
-# Generate Prisma client
-cd packages/db && pnpm db:generate
-
-# Push schema to your database
-pnpm db:push
-
-# Start the web app
-pnpm --filter web dev
-
-# Start the Discord bot (separate terminal)
-pnpm --filter discord-bot dev
-```
-
-The web app runs at `http://localhost:3000`.
+If you are interested in early access or want to be a design
+partner, reach out directly.
 
 ---
-
-## Environment Variables
-
-Copy `.env.example` and fill in:
-
-| Variable | Description |
-|---|---|
-| `DATABASE_URL` | PostgreSQL connection string (Railway or local) |
-| `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` | Clerk publishable key |
-| `CLERK_SECRET_KEY` | Clerk secret key |
-| `ANTHROPIC_API_KEY` | Anthropic API key for Claude |
-| `GITHUB_APP_ID` | GitHub App ID for webhook integration |
-| `GITHUB_APP_PRIVATE_KEY` | GitHub App private key (PEM) |
-| `GITHUB_WEBHOOK_SECRET` | Secret for validating GitHub webhook payloads |
-| `DISCORD_BOT_TOKEN` | Discord bot token |
-| `DISCORD_CLIENT_ID` | Discord application client ID |
-| `DISCORD_GUILD_ID` | Your Discord server ID (for dev) |
-| `NEXT_PUBLIC_APP_URL` | Public URL of the web app |
-
----
-
-## Deployment
-
-### Web App (Vercel)
-
-1. Connect this repository to Vercel
-2. Set the build command: `pnpm --filter web build`
-3. Set the output directory: `apps/web/.next`
-4. Add all environment variables in the Vercel dashboard
-5. Deploy
-
-### Discord Bot (Railway)
-
-1. Create a new Railway service from this repository
-2. Railway will use `railway.toml` to build and start the bot
-3. Add `DISCORD_BOT_TOKEN`, `DISCORD_CLIENT_ID`, `DATABASE_URL`, and `ANTHROPIC_API_KEY`
-4. Deploy
-
-### Database (Railway PostgreSQL)
-
-1. Add a PostgreSQL plugin in Railway
-2. Copy the `DATABASE_URL` to both the web app and Discord bot services
-3. Run migrations: `pnpm --filter @lucyn/db db:migrate`
-
----
-
-## Integrations
-
-### GitHub
-
-1. Create a GitHub App in your organization settings
-2. Set the webhook URL to `https://your-app.vercel.app/api/github/webhook`
-3. Subscribe to: `push`, `pull_request`, `pull_request_review` events
-4. Add the App ID and private key to your environment variables
-
-### Discord
-
-1. Create a Discord application at discord.com/developers
-2. Add a Bot to the application
-3. Enable `Message Content Intent` in the Bot settings
-4. Invite the bot to your server with `bot` + `applications.commands` scopes
-5. Set `DISCORD_BOT_TOKEN` and `DISCORD_CLIENT_ID` in Railway
-
-Developers link their Discord to GitHub with `/lucyn link-github <username>` in your server.
-
----
-
-## Design System
-
-Lucyn uses a Notion-inspired design language:
-
-- **Colors**: Off-white surface, subtle borders, near-black text — no gradients
-- **Typography**: Inter (system fallback), JetBrains Mono for code
-- **Spacing**: Generous whitespace, 6px border radius throughout
-- **AI indicators**: Purple `✦ Lucyn` label on all AI-generated content
-
----
-
-## Privacy
-
-Lucyn is built with developer privacy as a first principle:
-
-- Individual developer feedback is **always sent as private DMs**, never in public channels
-- Lucyn **never compares developers** to each other in any output
-- Developer capability profiles are for guidance only — not performance management
-- Raw source code is never stored permanently — only embeddings and metadata
+Built with [Claude](https://anthropic.com) by Lucyn Tools.
