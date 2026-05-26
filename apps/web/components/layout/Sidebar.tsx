@@ -2,25 +2,9 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  LayoutDashboard,
-  MessageSquare,
-  Users,
-  GitBranch,
-  Video,
-  CheckSquare,
-  Settings,
-} from "lucide-react";
+import { Settings } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-const navItems = [
-  { href: "/dashboard", icon: LayoutDashboard, label: "Dashboard" },
-  { href: "/chat", icon: MessageSquare, label: "Chat" },
-  { href: "/developers", icon: Users, label: "Developers" },
-  { href: "/repos", icon: GitBranch, label: "Repositories" },
-  { href: "/meetings", icon: Video, label: "Meetings" },
-  { href: "/tasks", icon: CheckSquare, label: "Tasks" },
-];
+import { navItems } from "./navigation";
 
 export function Sidebar() {
   const pathname = usePathname();
