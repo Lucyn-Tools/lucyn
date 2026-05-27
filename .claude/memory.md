@@ -25,7 +25,7 @@ Quick reference for anyone starting with Claude on this project.
 ```bash
 pnpm install                              # Install all deps
 pnpm --filter "@lucyn/db" run db:generate # Regenerate Prisma client
-pnpm --filter @lucyn-tools/web dev                     # Next.js dev server (localhost:3000)
+pnpm --filter "@lucyn-tools/web" dev                   # Next.js dev server (localhost:3000)
 pnpm --filter @lucyn-tools/discord-bot dev             # Discord bot with tsx watch
 pnpm --filter "@lucyn/compression" run typecheck
 pnpm --filter "@lucyn/github" run typecheck

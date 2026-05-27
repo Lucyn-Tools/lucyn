@@ -191,8 +191,8 @@ pnpm --filter "@lucyn-tools/discord-bot" run typecheck
 pnpm --filter "@lucyn-tools/web" run typecheck
 
 # Web app quality
-pnpm --filter @lucyn-tools/web run lint
-pnpm --filter @lucyn-tools/web run build
+pnpm --filter "@lucyn-tools/web" run lint
+pnpm --filter "@lucyn-tools/web" run build
 ```
 
 ### 9. Commit auto-fixes and push

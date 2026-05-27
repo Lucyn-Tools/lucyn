@@ -114,8 +114,8 @@ pnpm --filter "@lucyn-tools/discord-bot" run typecheck
 pnpm --filter "@lucyn-tools/web" run typecheck
 
 # Web app
-pnpm --filter @lucyn-tools/web run lint
-pnpm --filter @lucyn-tools/web run build
+pnpm --filter "@lucyn-tools/web" run lint
+pnpm --filter "@lucyn-tools/web" run build
 ```
 
 If a test fails on apparent flake, rerun once. If it still fails, stop and report.
