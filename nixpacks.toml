@@ -1,0 +1,8 @@
+[phases.setup]
+nixPkgs = ["nodejs_20"]
+
+[phases.build]
+cmds = ["pnpm --filter @lucyn-tools/discord-bot build"]
+
+[start]
+cmd = "pnpm --filter @lucyn-tools/discord-bot start"

@@ -4,10 +4,10 @@
 # Build: docker build -t lucyn-discord-bot -f Dockerfile .
 # Run:   docker run --env-file .env lucyn-discord-bot
 
-FROM node:20-alpine AS base
+FROM node:22-alpine AS base
 
 # Install pnpm
-RUN corepack enable && corepack prepare pnpm@10.10.0 --activate
+RUN corepack enable && corepack prepare pnpm@11.2.2 --activate
 
 WORKDIR /app
 
@@ -33,9 +33,9 @@ RUN pnpm --filter "@lucyn/db" run db:generate
 RUN pnpm --filter "@lucyn-tools/discord-bot" run build
 
 # Production image
-FROM node:20-alpine AS runtime
+FROM node:22-alpine AS runtime
 
-RUN corepack enable && corepack prepare pnpm@10.10.0 --activate
+RUN corepack enable && corepack prepare pnpm@11.2.2 --activate
 
 WORKDIR /app
 
