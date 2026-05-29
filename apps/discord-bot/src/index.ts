@@ -51,7 +51,7 @@ async function registerSlashCommands(): Promise<void> {
   console.log("[lucyn-bot] Slash commands registered");
 }
 
-client.once("ready", (c) => {
+client.once("clientReady", (c) => {
   console.log(`[lucyn-bot] Logged in as ${c.user.tag}`);
 });
 
