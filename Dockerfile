@@ -12,7 +12,7 @@ RUN corepack enable && corepack prepare pnpm@11.2.2 --activate
 WORKDIR /app
 
 # Copy workspace manifests for dependency resolution
-COPY package.json pnpm-workspace.yaml pnpm-lock.yaml ./
+COPY .npmrc package.json pnpm-workspace.yaml pnpm-lock.yaml ./
 COPY packages/db/package.json ./packages/db/
 COPY packages/ai/package.json ./packages/ai/
 COPY packages/github/package.json ./packages/github/
