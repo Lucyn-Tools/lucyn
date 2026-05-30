@@ -26,6 +26,9 @@ model Organization {
   tasks        Task[]
   embeddings   Embedding[]
   chatSessions ChatSession[]
+  commits      Commit[]
+  pullRequests PullRequest[]
+  chatMessages ChatMessage[]
 }
 
 model OrgMember {
@@ -89,6 +92,7 @@ model Developer {
 
 model Commit {
   id           String   @id @default(cuid())
+  orgId        String
   repoId       String
   developerId  String
   sha          String   @unique
@@ -98,15 +102,19 @@ model Commit {
   filesChanged Int      @default(0)
   committedAt  DateTime
 
-  repo      Repository @relation(fields: [repoId], references: [id])
-  developer Developer  @relation(fields: [developerId], references: [id])
+  org       Organization @relation(fields: [orgId], references: [id])
+  repo      Repository   @relation(fields: [repoId], references: [id])
+  developer Developer    @relation(fields: [developerId], references: [id])
+
+  @@index([orgId])
 }
 
 model PullRequest {
   id           String    @id @default(cuid())
+  orgId        String
   repoId       String
   authorId     String
-  githubId     Int
+  githubId     Int       @unique
   number       Int
   title        String
   body         String?
@@ -118,8 +126,11 @@ model PullRequest {
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
 
-  repo   Repository @relation(fields: [repoId], references: [id])
-  author Developer  @relation(fields: [authorId], references: [id])
+  org    Organization @relation(fields: [orgId], references: [id])
+  repo   Repository   @relation(fields: [repoId], references: [id])
+  author Developer    @relation(fields: [authorId], references: [id])
+
+  @@index([orgId])
 }
 
 enum PRState {
@@ -245,10 +256,14 @@ model ChatSession {
 model ChatMessage {
   id        String   @id @default(cuid())
   sessionId String
+  orgId     String
   role      String
   content   String
   sources   Json     @default("[]")
   createdAt DateTime @default(now())
 
-  session ChatSession @relation(fields: [sessionId], references: [id])
+  session ChatSession  @relation(fields: [sessionId], references: [id])
+  org     Organization @relation(fields: [orgId], references: [id])
+
+  @@index([orgId])
 }

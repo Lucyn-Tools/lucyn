@@ -44,8 +44,35 @@ export async function ingestCommit(
 ): Promise<void> {
   await prisma.commit.upsert({
     where: { sha },
-    create: { repoId, developerId, sha, message, additions, deletions, filesChanged, committedAt },
+    create: { orgId, repoId, developerId, sha, message, additions, deletions, filesChanged, committedAt },
     update: {},
+  });
+}
+
+export async function ingestPullRequest(
+  orgId: string,
+  repoId: string,
+  authorId: string,
+  githubId: number,
+  number: number,
+  title: string,
+  body: string | null,
+  state: "OPEN" | "CLOSED" | "MERGED",
+  additions: number,
+  deletions: number,
+  mergedAt: Date | null
+): Promise<void> {
+  await prisma.pullRequest.upsert({
+    where: { githubId },
+    create: { orgId, repoId, authorId, githubId, number, title, body, state, additions, deletions, mergedAt },
+    update: { title, body, state, additions, deletions, mergedAt },
+  });
+}
+
+export async function incrementPRReviewCycles(githubPRId: number): Promise<void> {
+  await prisma.pullRequest.updateMany({
+    where: { githubId: githubPRId },
+    data: { reviewCycles: { increment: 1 } },
   });
 }
 

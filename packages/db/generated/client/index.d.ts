@@ -1953,6 +1953,9 @@ export namespace Prisma {
     tasks: number
     embeddings: number
     chatSessions: number
+    commits: number
+    pullRequests: number
+    chatMessages: number
   }
 
   export type OrganizationCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1964,6 +1967,9 @@ export namespace Prisma {
     tasks?: boolean | OrganizationCountOutputTypeCountTasksArgs
     embeddings?: boolean | OrganizationCountOutputTypeCountEmbeddingsArgs
     chatSessions?: boolean | OrganizationCountOutputTypeCountChatSessionsArgs
+    commits?: boolean | OrganizationCountOutputTypeCountCommitsArgs
+    pullRequests?: boolean | OrganizationCountOutputTypeCountPullRequestsArgs
+    chatMessages?: boolean | OrganizationCountOutputTypeCountChatMessagesArgs
   }
 
   // Custom InputTypes
@@ -2031,6 +2037,27 @@ export namespace Prisma {
    */
   export type OrganizationCountOutputTypeCountChatSessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ChatSessionWhereInput
+  }
+
+  /**
+   * OrganizationCountOutputType without action
+   */
+  export type OrganizationCountOutputTypeCountCommitsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CommitWhereInput
+  }
+
+  /**
+   * OrganizationCountOutputType without action
+   */
+  export type OrganizationCountOutputTypeCountPullRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PullRequestWhereInput
+  }
+
+  /**
+   * OrganizationCountOutputType without action
+   */
+  export type OrganizationCountOutputTypeCountChatMessagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ChatMessageWhereInput
   }
 
 
@@ -2386,6 +2413,9 @@ export namespace Prisma {
     tasks?: boolean | Organization$tasksArgs<ExtArgs>
     embeddings?: boolean | Organization$embeddingsArgs<ExtArgs>
     chatSessions?: boolean | Organization$chatSessionsArgs<ExtArgs>
+    commits?: boolean | Organization$commitsArgs<ExtArgs>
+    pullRequests?: boolean | Organization$pullRequestsArgs<ExtArgs>
+    chatMessages?: boolean | Organization$chatMessagesArgs<ExtArgs>
     _count?: boolean | OrganizationCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["organization"]>
 
@@ -2429,6 +2459,9 @@ export namespace Prisma {
     tasks?: boolean | Organization$tasksArgs<ExtArgs>
     embeddings?: boolean | Organization$embeddingsArgs<ExtArgs>
     chatSessions?: boolean | Organization$chatSessionsArgs<ExtArgs>
+    commits?: boolean | Organization$commitsArgs<ExtArgs>
+    pullRequests?: boolean | Organization$pullRequestsArgs<ExtArgs>
+    chatMessages?: boolean | Organization$chatMessagesArgs<ExtArgs>
     _count?: boolean | OrganizationCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type OrganizationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2445,6 +2478,9 @@ export namespace Prisma {
       tasks: Prisma.$TaskPayload<ExtArgs>[]
       embeddings: Prisma.$EmbeddingPayload<ExtArgs>[]
       chatSessions: Prisma.$ChatSessionPayload<ExtArgs>[]
+      commits: Prisma.$CommitPayload<ExtArgs>[]
+      pullRequests: Prisma.$PullRequestPayload<ExtArgs>[]
+      chatMessages: Prisma.$ChatMessagePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2856,6 +2892,9 @@ export namespace Prisma {
     tasks<T extends Organization$tasksArgs<ExtArgs> = {}>(args?: Subset<T, Organization$tasksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     embeddings<T extends Organization$embeddingsArgs<ExtArgs> = {}>(args?: Subset<T, Organization$embeddingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmbeddingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     chatSessions<T extends Organization$chatSessionsArgs<ExtArgs> = {}>(args?: Subset<T, Organization$chatSessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChatSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    commits<T extends Organization$commitsArgs<ExtArgs> = {}>(args?: Subset<T, Organization$commitsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommitPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    pullRequests<T extends Organization$pullRequestsArgs<ExtArgs> = {}>(args?: Subset<T, Organization$pullRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PullRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    chatMessages<T extends Organization$chatMessagesArgs<ExtArgs> = {}>(args?: Subset<T, Organization$chatMessagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChatMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3474,6 +3513,78 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ChatSessionScalarFieldEnum | ChatSessionScalarFieldEnum[]
+  }
+
+  /**
+   * Organization.commits
+   */
+  export type Organization$commitsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Commit
+     */
+    select?: CommitSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Commit
+     */
+    omit?: CommitOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommitInclude<ExtArgs> | null
+    where?: CommitWhereInput
+    orderBy?: CommitOrderByWithRelationInput | CommitOrderByWithRelationInput[]
+    cursor?: CommitWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CommitScalarFieldEnum | CommitScalarFieldEnum[]
+  }
+
+  /**
+   * Organization.pullRequests
+   */
+  export type Organization$pullRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PullRequest
+     */
+    select?: PullRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PullRequest
+     */
+    omit?: PullRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PullRequestInclude<ExtArgs> | null
+    where?: PullRequestWhereInput
+    orderBy?: PullRequestOrderByWithRelationInput | PullRequestOrderByWithRelationInput[]
+    cursor?: PullRequestWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PullRequestScalarFieldEnum | PullRequestScalarFieldEnum[]
+  }
+
+  /**
+   * Organization.chatMessages
+   */
+  export type Organization$chatMessagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChatMessage
+     */
+    select?: ChatMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChatMessage
+     */
+    omit?: ChatMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatMessageInclude<ExtArgs> | null
+    where?: ChatMessageWhereInput
+    orderBy?: ChatMessageOrderByWithRelationInput | ChatMessageOrderByWithRelationInput[]
+    cursor?: ChatMessageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ChatMessageScalarFieldEnum | ChatMessageScalarFieldEnum[]
   }
 
   /**
@@ -7097,6 +7208,7 @@ export namespace Prisma {
 
   export type CommitMinAggregateOutputType = {
     id: string | null
+    orgId: string | null
     repoId: string | null
     developerId: string | null
     sha: string | null
@@ -7109,6 +7221,7 @@ export namespace Prisma {
 
   export type CommitMaxAggregateOutputType = {
     id: string | null
+    orgId: string | null
     repoId: string | null
     developerId: string | null
     sha: string | null
@@ -7121,6 +7234,7 @@ export namespace Prisma {
 
   export type CommitCountAggregateOutputType = {
     id: number
+    orgId: number
     repoId: number
     developerId: number
     sha: number
@@ -7147,6 +7261,7 @@ export namespace Prisma {
 
   export type CommitMinAggregateInputType = {
     id?: true
+    orgId?: true
     repoId?: true
     developerId?: true
     sha?: true
@@ -7159,6 +7274,7 @@ export namespace Prisma {
 
   export type CommitMaxAggregateInputType = {
     id?: true
+    orgId?: true
     repoId?: true
     developerId?: true
     sha?: true
@@ -7171,6 +7287,7 @@ export namespace Prisma {
 
   export type CommitCountAggregateInputType = {
     id?: true
+    orgId?: true
     repoId?: true
     developerId?: true
     sha?: true
@@ -7270,6 +7387,7 @@ export namespace Prisma {
 
   export type CommitGroupByOutputType = {
     id: string
+    orgId: string
     repoId: string
     developerId: string
     sha: string
@@ -7301,6 +7419,7 @@ export namespace Prisma {
 
   export type CommitSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    orgId?: boolean
     repoId?: boolean
     developerId?: boolean
     sha?: boolean
@@ -7309,12 +7428,14 @@ export namespace Prisma {
     deletions?: boolean
     filesChanged?: boolean
     committedAt?: boolean
+    org?: boolean | OrganizationDefaultArgs<ExtArgs>
     repo?: boolean | RepositoryDefaultArgs<ExtArgs>
     developer?: boolean | DeveloperDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["commit"]>
 
   export type CommitSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    orgId?: boolean
     repoId?: boolean
     developerId?: boolean
     sha?: boolean
@@ -7323,12 +7444,14 @@ export namespace Prisma {
     deletions?: boolean
     filesChanged?: boolean
     committedAt?: boolean
+    org?: boolean | OrganizationDefaultArgs<ExtArgs>
     repo?: boolean | RepositoryDefaultArgs<ExtArgs>
     developer?: boolean | DeveloperDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["commit"]>
 
   export type CommitSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    orgId?: boolean
     repoId?: boolean
     developerId?: boolean
     sha?: boolean
@@ -7337,12 +7460,14 @@ export namespace Prisma {
     deletions?: boolean
     filesChanged?: boolean
     committedAt?: boolean
+    org?: boolean | OrganizationDefaultArgs<ExtArgs>
     repo?: boolean | RepositoryDefaultArgs<ExtArgs>
     developer?: boolean | DeveloperDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["commit"]>
 
   export type CommitSelectScalar = {
     id?: boolean
+    orgId?: boolean
     repoId?: boolean
     developerId?: boolean
     sha?: boolean
@@ -7353,16 +7478,19 @@ export namespace Prisma {
     committedAt?: boolean
   }
 
-  export type CommitOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "repoId" | "developerId" | "sha" | "message" | "additions" | "deletions" | "filesChanged" | "committedAt", ExtArgs["result"]["commit"]>
+  export type CommitOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "orgId" | "repoId" | "developerId" | "sha" | "message" | "additions" | "deletions" | "filesChanged" | "committedAt", ExtArgs["result"]["commit"]>
   export type CommitInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    org?: boolean | OrganizationDefaultArgs<ExtArgs>
     repo?: boolean | RepositoryDefaultArgs<ExtArgs>
     developer?: boolean | DeveloperDefaultArgs<ExtArgs>
   }
   export type CommitIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    org?: boolean | OrganizationDefaultArgs<ExtArgs>
     repo?: boolean | RepositoryDefaultArgs<ExtArgs>
     developer?: boolean | DeveloperDefaultArgs<ExtArgs>
   }
   export type CommitIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    org?: boolean | OrganizationDefaultArgs<ExtArgs>
     repo?: boolean | RepositoryDefaultArgs<ExtArgs>
     developer?: boolean | DeveloperDefaultArgs<ExtArgs>
   }
@@ -7370,11 +7498,13 @@ export namespace Prisma {
   export type $CommitPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Commit"
     objects: {
+      org: Prisma.$OrganizationPayload<ExtArgs>
       repo: Prisma.$RepositoryPayload<ExtArgs>
       developer: Prisma.$DeveloperPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
+      orgId: string
       repoId: string
       developerId: string
       sha: string
@@ -7777,6 +7907,7 @@ export namespace Prisma {
    */
   export interface Prisma__CommitClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    org<T extends OrganizationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, OrganizationDefaultArgs<ExtArgs>>): Prisma__OrganizationClient<$Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     repo<T extends RepositoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RepositoryDefaultArgs<ExtArgs>>): Prisma__RepositoryClient<$Result.GetResult<Prisma.$RepositoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     developer<T extends DeveloperDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DeveloperDefaultArgs<ExtArgs>>): Prisma__DeveloperClient<$Result.GetResult<Prisma.$DeveloperPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
@@ -7809,6 +7940,7 @@ export namespace Prisma {
    */
   interface CommitFieldRefs {
     readonly id: FieldRef<"Commit", 'String'>
+    readonly orgId: FieldRef<"Commit", 'String'>
     readonly repoId: FieldRef<"Commit", 'String'>
     readonly developerId: FieldRef<"Commit", 'String'>
     readonly sha: FieldRef<"Commit", 'String'>
@@ -8266,6 +8398,7 @@ export namespace Prisma {
 
   export type PullRequestMinAggregateOutputType = {
     id: string | null
+    orgId: string | null
     repoId: string | null
     authorId: string | null
     githubId: number | null
@@ -8283,6 +8416,7 @@ export namespace Prisma {
 
   export type PullRequestMaxAggregateOutputType = {
     id: string | null
+    orgId: string | null
     repoId: string | null
     authorId: string | null
     githubId: number | null
@@ -8300,6 +8434,7 @@ export namespace Prisma {
 
   export type PullRequestCountAggregateOutputType = {
     id: number
+    orgId: number
     repoId: number
     authorId: number
     githubId: number
@@ -8335,6 +8470,7 @@ export namespace Prisma {
 
   export type PullRequestMinAggregateInputType = {
     id?: true
+    orgId?: true
     repoId?: true
     authorId?: true
     githubId?: true
@@ -8352,6 +8488,7 @@ export namespace Prisma {
 
   export type PullRequestMaxAggregateInputType = {
     id?: true
+    orgId?: true
     repoId?: true
     authorId?: true
     githubId?: true
@@ -8369,6 +8506,7 @@ export namespace Prisma {
 
   export type PullRequestCountAggregateInputType = {
     id?: true
+    orgId?: true
     repoId?: true
     authorId?: true
     githubId?: true
@@ -8473,6 +8611,7 @@ export namespace Prisma {
 
   export type PullRequestGroupByOutputType = {
     id: string
+    orgId: string
     repoId: string
     authorId: string
     githubId: number
@@ -8509,6 +8648,7 @@ export namespace Prisma {
 
   export type PullRequestSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    orgId?: boolean
     repoId?: boolean
     authorId?: boolean
     githubId?: boolean
@@ -8522,12 +8662,14 @@ export namespace Prisma {
     mergedAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    org?: boolean | OrganizationDefaultArgs<ExtArgs>
     repo?: boolean | RepositoryDefaultArgs<ExtArgs>
     author?: boolean | DeveloperDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["pullRequest"]>
 
   export type PullRequestSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    orgId?: boolean
     repoId?: boolean
     authorId?: boolean
     githubId?: boolean
@@ -8541,12 +8683,14 @@ export namespace Prisma {
     mergedAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    org?: boolean | OrganizationDefaultArgs<ExtArgs>
     repo?: boolean | RepositoryDefaultArgs<ExtArgs>
     author?: boolean | DeveloperDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["pullRequest"]>
 
   export type PullRequestSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    orgId?: boolean
     repoId?: boolean
     authorId?: boolean
     githubId?: boolean
@@ -8560,12 +8704,14 @@ export namespace Prisma {
     mergedAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    org?: boolean | OrganizationDefaultArgs<ExtArgs>
     repo?: boolean | RepositoryDefaultArgs<ExtArgs>
     author?: boolean | DeveloperDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["pullRequest"]>
 
   export type PullRequestSelectScalar = {
     id?: boolean
+    orgId?: boolean
     repoId?: boolean
     authorId?: boolean
     githubId?: boolean
@@ -8581,16 +8727,19 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type PullRequestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "repoId" | "authorId" | "githubId" | "number" | "title" | "body" | "state" | "reviewCycles" | "additions" | "deletions" | "mergedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["pullRequest"]>
+  export type PullRequestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "orgId" | "repoId" | "authorId" | "githubId" | "number" | "title" | "body" | "state" | "reviewCycles" | "additions" | "deletions" | "mergedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["pullRequest"]>
   export type PullRequestInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    org?: boolean | OrganizationDefaultArgs<ExtArgs>
     repo?: boolean | RepositoryDefaultArgs<ExtArgs>
     author?: boolean | DeveloperDefaultArgs<ExtArgs>
   }
   export type PullRequestIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    org?: boolean | OrganizationDefaultArgs<ExtArgs>
     repo?: boolean | RepositoryDefaultArgs<ExtArgs>
     author?: boolean | DeveloperDefaultArgs<ExtArgs>
   }
   export type PullRequestIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    org?: boolean | OrganizationDefaultArgs<ExtArgs>
     repo?: boolean | RepositoryDefaultArgs<ExtArgs>
     author?: boolean | DeveloperDefaultArgs<ExtArgs>
   }
@@ -8598,11 +8747,13 @@ export namespace Prisma {
   export type $PullRequestPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "PullRequest"
     objects: {
+      org: Prisma.$OrganizationPayload<ExtArgs>
       repo: Prisma.$RepositoryPayload<ExtArgs>
       author: Prisma.$DeveloperPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
+      orgId: string
       repoId: string
       authorId: string
       githubId: number
@@ -9010,6 +9161,7 @@ export namespace Prisma {
    */
   export interface Prisma__PullRequestClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    org<T extends OrganizationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, OrganizationDefaultArgs<ExtArgs>>): Prisma__OrganizationClient<$Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     repo<T extends RepositoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, RepositoryDefaultArgs<ExtArgs>>): Prisma__RepositoryClient<$Result.GetResult<Prisma.$RepositoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     author<T extends DeveloperDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DeveloperDefaultArgs<ExtArgs>>): Prisma__DeveloperClient<$Result.GetResult<Prisma.$DeveloperPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
@@ -9042,6 +9194,7 @@ export namespace Prisma {
    */
   interface PullRequestFieldRefs {
     readonly id: FieldRef<"PullRequest", 'String'>
+    readonly orgId: FieldRef<"PullRequest", 'String'>
     readonly repoId: FieldRef<"PullRequest", 'String'>
     readonly authorId: FieldRef<"PullRequest", 'String'>
     readonly githubId: FieldRef<"PullRequest", 'Int'>
@@ -15263,6 +15416,7 @@ export namespace Prisma {
   export type ChatMessageMinAggregateOutputType = {
     id: string | null
     sessionId: string | null
+    orgId: string | null
     role: string | null
     content: string | null
     createdAt: Date | null
@@ -15271,6 +15425,7 @@ export namespace Prisma {
   export type ChatMessageMaxAggregateOutputType = {
     id: string | null
     sessionId: string | null
+    orgId: string | null
     role: string | null
     content: string | null
     createdAt: Date | null
@@ -15279,6 +15434,7 @@ export namespace Prisma {
   export type ChatMessageCountAggregateOutputType = {
     id: number
     sessionId: number
+    orgId: number
     role: number
     content: number
     sources: number
@@ -15290,6 +15446,7 @@ export namespace Prisma {
   export type ChatMessageMinAggregateInputType = {
     id?: true
     sessionId?: true
+    orgId?: true
     role?: true
     content?: true
     createdAt?: true
@@ -15298,6 +15455,7 @@ export namespace Prisma {
   export type ChatMessageMaxAggregateInputType = {
     id?: true
     sessionId?: true
+    orgId?: true
     role?: true
     content?: true
     createdAt?: true
@@ -15306,6 +15464,7 @@ export namespace Prisma {
   export type ChatMessageCountAggregateInputType = {
     id?: true
     sessionId?: true
+    orgId?: true
     role?: true
     content?: true
     sources?: true
@@ -15388,6 +15547,7 @@ export namespace Prisma {
   export type ChatMessageGroupByOutputType = {
     id: string
     sessionId: string
+    orgId: string
     role: string
     content: string
     sources: JsonValue
@@ -15414,61 +15574,73 @@ export namespace Prisma {
   export type ChatMessageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     sessionId?: boolean
+    orgId?: boolean
     role?: boolean
     content?: boolean
     sources?: boolean
     createdAt?: boolean
     session?: boolean | ChatSessionDefaultArgs<ExtArgs>
+    org?: boolean | OrganizationDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["chatMessage"]>
 
   export type ChatMessageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     sessionId?: boolean
+    orgId?: boolean
     role?: boolean
     content?: boolean
     sources?: boolean
     createdAt?: boolean
     session?: boolean | ChatSessionDefaultArgs<ExtArgs>
+    org?: boolean | OrganizationDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["chatMessage"]>
 
   export type ChatMessageSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     sessionId?: boolean
+    orgId?: boolean
     role?: boolean
     content?: boolean
     sources?: boolean
     createdAt?: boolean
     session?: boolean | ChatSessionDefaultArgs<ExtArgs>
+    org?: boolean | OrganizationDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["chatMessage"]>
 
   export type ChatMessageSelectScalar = {
     id?: boolean
     sessionId?: boolean
+    orgId?: boolean
     role?: boolean
     content?: boolean
     sources?: boolean
     createdAt?: boolean
   }
 
-  export type ChatMessageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "sessionId" | "role" | "content" | "sources" | "createdAt", ExtArgs["result"]["chatMessage"]>
+  export type ChatMessageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "sessionId" | "orgId" | "role" | "content" | "sources" | "createdAt", ExtArgs["result"]["chatMessage"]>
   export type ChatMessageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     session?: boolean | ChatSessionDefaultArgs<ExtArgs>
+    org?: boolean | OrganizationDefaultArgs<ExtArgs>
   }
   export type ChatMessageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     session?: boolean | ChatSessionDefaultArgs<ExtArgs>
+    org?: boolean | OrganizationDefaultArgs<ExtArgs>
   }
   export type ChatMessageIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     session?: boolean | ChatSessionDefaultArgs<ExtArgs>
+    org?: boolean | OrganizationDefaultArgs<ExtArgs>
   }
 
   export type $ChatMessagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "ChatMessage"
     objects: {
       session: Prisma.$ChatSessionPayload<ExtArgs>
+      org: Prisma.$OrganizationPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       sessionId: string
+      orgId: string
       role: string
       content: string
       sources: Prisma.JsonValue
@@ -15868,6 +16040,7 @@ export namespace Prisma {
   export interface Prisma__ChatMessageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     session<T extends ChatSessionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ChatSessionDefaultArgs<ExtArgs>>): Prisma__ChatSessionClient<$Result.GetResult<Prisma.$ChatSessionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    org<T extends OrganizationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, OrganizationDefaultArgs<ExtArgs>>): Prisma__OrganizationClient<$Result.GetResult<Prisma.$OrganizationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -15899,6 +16072,7 @@ export namespace Prisma {
   interface ChatMessageFieldRefs {
     readonly id: FieldRef<"ChatMessage", 'String'>
     readonly sessionId: FieldRef<"ChatMessage", 'String'>
+    readonly orgId: FieldRef<"ChatMessage", 'String'>
     readonly role: FieldRef<"ChatMessage", 'String'>
     readonly content: FieldRef<"ChatMessage", 'String'>
     readonly sources: FieldRef<"ChatMessage", 'Json'>
@@ -16395,6 +16569,7 @@ export namespace Prisma {
 
   export const CommitScalarFieldEnum: {
     id: 'id',
+    orgId: 'orgId',
     repoId: 'repoId',
     developerId: 'developerId',
     sha: 'sha',
@@ -16410,6 +16585,7 @@ export namespace Prisma {
 
   export const PullRequestScalarFieldEnum: {
     id: 'id',
+    orgId: 'orgId',
     repoId: 'repoId',
     authorId: 'authorId',
     githubId: 'githubId',
@@ -16506,6 +16682,7 @@ export namespace Prisma {
   export const ChatMessageScalarFieldEnum: {
     id: 'id',
     sessionId: 'sessionId',
+    orgId: 'orgId',
     role: 'role',
     content: 'content',
     sources: 'sources',
@@ -16729,6 +16906,9 @@ export namespace Prisma {
     tasks?: TaskListRelationFilter
     embeddings?: EmbeddingListRelationFilter
     chatSessions?: ChatSessionListRelationFilter
+    commits?: CommitListRelationFilter
+    pullRequests?: PullRequestListRelationFilter
+    chatMessages?: ChatMessageListRelationFilter
   }
 
   export type OrganizationOrderByWithRelationInput = {
@@ -16747,6 +16927,9 @@ export namespace Prisma {
     tasks?: TaskOrderByRelationAggregateInput
     embeddings?: EmbeddingOrderByRelationAggregateInput
     chatSessions?: ChatSessionOrderByRelationAggregateInput
+    commits?: CommitOrderByRelationAggregateInput
+    pullRequests?: PullRequestOrderByRelationAggregateInput
+    chatMessages?: ChatMessageOrderByRelationAggregateInput
   }
 
   export type OrganizationWhereUniqueInput = Prisma.AtLeast<{
@@ -16768,6 +16951,9 @@ export namespace Prisma {
     tasks?: TaskListRelationFilter
     embeddings?: EmbeddingListRelationFilter
     chatSessions?: ChatSessionListRelationFilter
+    commits?: CommitListRelationFilter
+    pullRequests?: PullRequestListRelationFilter
+    chatMessages?: ChatMessageListRelationFilter
   }, "id" | "slug" | "githubOrgId" | "discordGuildId">
 
   export type OrganizationOrderByWithAggregationInput = {
@@ -17045,6 +17231,7 @@ export namespace Prisma {
     OR?: CommitWhereInput[]
     NOT?: CommitWhereInput | CommitWhereInput[]
     id?: StringFilter<"Commit"> | string
+    orgId?: StringFilter<"Commit"> | string
     repoId?: StringFilter<"Commit"> | string
     developerId?: StringFilter<"Commit"> | string
     sha?: StringFilter<"Commit"> | string
@@ -17053,12 +17240,14 @@ export namespace Prisma {
     deletions?: IntFilter<"Commit"> | number
     filesChanged?: IntFilter<"Commit"> | number
     committedAt?: DateTimeFilter<"Commit"> | Date | string
+    org?: XOR<OrganizationScalarRelationFilter, OrganizationWhereInput>
     repo?: XOR<RepositoryScalarRelationFilter, RepositoryWhereInput>
     developer?: XOR<DeveloperScalarRelationFilter, DeveloperWhereInput>
   }
 
   export type CommitOrderByWithRelationInput = {
     id?: SortOrder
+    orgId?: SortOrder
     repoId?: SortOrder
     developerId?: SortOrder
     sha?: SortOrder
@@ -17067,6 +17256,7 @@ export namespace Prisma {
     deletions?: SortOrder
     filesChanged?: SortOrder
     committedAt?: SortOrder
+    org?: OrganizationOrderByWithRelationInput
     repo?: RepositoryOrderByWithRelationInput
     developer?: DeveloperOrderByWithRelationInput
   }
@@ -17077,6 +17267,7 @@ export namespace Prisma {
     AND?: CommitWhereInput | CommitWhereInput[]
     OR?: CommitWhereInput[]
     NOT?: CommitWhereInput | CommitWhereInput[]
+    orgId?: StringFilter<"Commit"> | string
     repoId?: StringFilter<"Commit"> | string
     developerId?: StringFilter<"Commit"> | string
     message?: StringFilter<"Commit"> | string
@@ -17084,12 +17275,14 @@ export namespace Prisma {
     deletions?: IntFilter<"Commit"> | number
     filesChanged?: IntFilter<"Commit"> | number
     committedAt?: DateTimeFilter<"Commit"> | Date | string
+    org?: XOR<OrganizationScalarRelationFilter, OrganizationWhereInput>
     repo?: XOR<RepositoryScalarRelationFilter, RepositoryWhereInput>
     developer?: XOR<DeveloperScalarRelationFilter, DeveloperWhereInput>
   }, "id" | "sha">
 
   export type CommitOrderByWithAggregationInput = {
     id?: SortOrder
+    orgId?: SortOrder
     repoId?: SortOrder
     developerId?: SortOrder
     sha?: SortOrder
@@ -17110,6 +17303,7 @@ export namespace Prisma {
     OR?: CommitScalarWhereWithAggregatesInput[]
     NOT?: CommitScalarWhereWithAggregatesInput | CommitScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Commit"> | string
+    orgId?: StringWithAggregatesFilter<"Commit"> | string
     repoId?: StringWithAggregatesFilter<"Commit"> | string
     developerId?: StringWithAggregatesFilter<"Commit"> | string
     sha?: StringWithAggregatesFilter<"Commit"> | string
@@ -17125,6 +17319,7 @@ export namespace Prisma {
     OR?: PullRequestWhereInput[]
     NOT?: PullRequestWhereInput | PullRequestWhereInput[]
     id?: StringFilter<"PullRequest"> | string
+    orgId?: StringFilter<"PullRequest"> | string
     repoId?: StringFilter<"PullRequest"> | string
     authorId?: StringFilter<"PullRequest"> | string
     githubId?: IntFilter<"PullRequest"> | number
@@ -17138,12 +17333,14 @@ export namespace Prisma {
     mergedAt?: DateTimeNullableFilter<"PullRequest"> | Date | string | null
     createdAt?: DateTimeFilter<"PullRequest"> | Date | string
     updatedAt?: DateTimeFilter<"PullRequest"> | Date | string
+    org?: XOR<OrganizationScalarRelationFilter, OrganizationWhereInput>
     repo?: XOR<RepositoryScalarRelationFilter, RepositoryWhereInput>
     author?: XOR<DeveloperScalarRelationFilter, DeveloperWhereInput>
   }
 
   export type PullRequestOrderByWithRelationInput = {
     id?: SortOrder
+    orgId?: SortOrder
     repoId?: SortOrder
     authorId?: SortOrder
     githubId?: SortOrder
@@ -17157,18 +17354,20 @@ export namespace Prisma {
     mergedAt?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    org?: OrganizationOrderByWithRelationInput
     repo?: RepositoryOrderByWithRelationInput
     author?: DeveloperOrderByWithRelationInput
   }
 
   export type PullRequestWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    githubId?: number
     AND?: PullRequestWhereInput | PullRequestWhereInput[]
     OR?: PullRequestWhereInput[]
     NOT?: PullRequestWhereInput | PullRequestWhereInput[]
+    orgId?: StringFilter<"PullRequest"> | string
     repoId?: StringFilter<"PullRequest"> | string
     authorId?: StringFilter<"PullRequest"> | string
-    githubId?: IntFilter<"PullRequest"> | number
     number?: IntFilter<"PullRequest"> | number
     title?: StringFilter<"PullRequest"> | string
     body?: StringNullableFilter<"PullRequest"> | string | null
@@ -17179,12 +17378,14 @@ export namespace Prisma {
     mergedAt?: DateTimeNullableFilter<"PullRequest"> | Date | string | null
     createdAt?: DateTimeFilter<"PullRequest"> | Date | string
     updatedAt?: DateTimeFilter<"PullRequest"> | Date | string
+    org?: XOR<OrganizationScalarRelationFilter, OrganizationWhereInput>
     repo?: XOR<RepositoryScalarRelationFilter, RepositoryWhereInput>
     author?: XOR<DeveloperScalarRelationFilter, DeveloperWhereInput>
-  }, "id">
+  }, "id" | "githubId">
 
   export type PullRequestOrderByWithAggregationInput = {
     id?: SortOrder
+    orgId?: SortOrder
     repoId?: SortOrder
     authorId?: SortOrder
     githubId?: SortOrder
@@ -17210,6 +17411,7 @@ export namespace Prisma {
     OR?: PullRequestScalarWhereWithAggregatesInput[]
     NOT?: PullRequestScalarWhereWithAggregatesInput | PullRequestScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"PullRequest"> | string
+    orgId?: StringWithAggregatesFilter<"PullRequest"> | string
     repoId?: StringWithAggregatesFilter<"PullRequest"> | string
     authorId?: StringWithAggregatesFilter<"PullRequest"> | string
     githubId?: IntWithAggregatesFilter<"PullRequest"> | number
@@ -17625,21 +17827,25 @@ export namespace Prisma {
     NOT?: ChatMessageWhereInput | ChatMessageWhereInput[]
     id?: StringFilter<"ChatMessage"> | string
     sessionId?: StringFilter<"ChatMessage"> | string
+    orgId?: StringFilter<"ChatMessage"> | string
     role?: StringFilter<"ChatMessage"> | string
     content?: StringFilter<"ChatMessage"> | string
     sources?: JsonFilter<"ChatMessage">
     createdAt?: DateTimeFilter<"ChatMessage"> | Date | string
     session?: XOR<ChatSessionScalarRelationFilter, ChatSessionWhereInput>
+    org?: XOR<OrganizationScalarRelationFilter, OrganizationWhereInput>
   }
 
   export type ChatMessageOrderByWithRelationInput = {
     id?: SortOrder
     sessionId?: SortOrder
+    orgId?: SortOrder
     role?: SortOrder
     content?: SortOrder
     sources?: SortOrder
     createdAt?: SortOrder
     session?: ChatSessionOrderByWithRelationInput
+    org?: OrganizationOrderByWithRelationInput
   }
 
   export type ChatMessageWhereUniqueInput = Prisma.AtLeast<{
@@ -17648,16 +17854,19 @@ export namespace Prisma {
     OR?: ChatMessageWhereInput[]
     NOT?: ChatMessageWhereInput | ChatMessageWhereInput[]
     sessionId?: StringFilter<"ChatMessage"> | string
+    orgId?: StringFilter<"ChatMessage"> | string
     role?: StringFilter<"ChatMessage"> | string
     content?: StringFilter<"ChatMessage"> | string
     sources?: JsonFilter<"ChatMessage">
     createdAt?: DateTimeFilter<"ChatMessage"> | Date | string
     session?: XOR<ChatSessionScalarRelationFilter, ChatSessionWhereInput>
+    org?: XOR<OrganizationScalarRelationFilter, OrganizationWhereInput>
   }, "id">
 
   export type ChatMessageOrderByWithAggregationInput = {
     id?: SortOrder
     sessionId?: SortOrder
+    orgId?: SortOrder
     role?: SortOrder
     content?: SortOrder
     sources?: SortOrder
@@ -17673,6 +17882,7 @@ export namespace Prisma {
     NOT?: ChatMessageScalarWhereWithAggregatesInput | ChatMessageScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"ChatMessage"> | string
     sessionId?: StringWithAggregatesFilter<"ChatMessage"> | string
+    orgId?: StringWithAggregatesFilter<"ChatMessage"> | string
     role?: StringWithAggregatesFilter<"ChatMessage"> | string
     content?: StringWithAggregatesFilter<"ChatMessage"> | string
     sources?: JsonWithAggregatesFilter<"ChatMessage">
@@ -17695,6 +17905,9 @@ export namespace Prisma {
     tasks?: TaskCreateNestedManyWithoutOrgInput
     embeddings?: EmbeddingCreateNestedManyWithoutOrgInput
     chatSessions?: ChatSessionCreateNestedManyWithoutOrgInput
+    commits?: CommitCreateNestedManyWithoutOrgInput
+    pullRequests?: PullRequestCreateNestedManyWithoutOrgInput
+    chatMessages?: ChatMessageCreateNestedManyWithoutOrgInput
   }
 
   export type OrganizationUncheckedCreateInput = {
@@ -17713,6 +17926,9 @@ export namespace Prisma {
     tasks?: TaskUncheckedCreateNestedManyWithoutOrgInput
     embeddings?: EmbeddingUncheckedCreateNestedManyWithoutOrgInput
     chatSessions?: ChatSessionUncheckedCreateNestedManyWithoutOrgInput
+    commits?: CommitUncheckedCreateNestedManyWithoutOrgInput
+    pullRequests?: PullRequestUncheckedCreateNestedManyWithoutOrgInput
+    chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutOrgInput
   }
 
   export type OrganizationUpdateInput = {
@@ -17731,6 +17947,9 @@ export namespace Prisma {
     tasks?: TaskUpdateManyWithoutOrgNestedInput
     embeddings?: EmbeddingUpdateManyWithoutOrgNestedInput
     chatSessions?: ChatSessionUpdateManyWithoutOrgNestedInput
+    commits?: CommitUpdateManyWithoutOrgNestedInput
+    pullRequests?: PullRequestUpdateManyWithoutOrgNestedInput
+    chatMessages?: ChatMessageUpdateManyWithoutOrgNestedInput
   }
 
   export type OrganizationUncheckedUpdateInput = {
@@ -17749,6 +17968,9 @@ export namespace Prisma {
     tasks?: TaskUncheckedUpdateManyWithoutOrgNestedInput
     embeddings?: EmbeddingUncheckedUpdateManyWithoutOrgNestedInput
     chatSessions?: ChatSessionUncheckedUpdateManyWithoutOrgNestedInput
+    commits?: CommitUncheckedUpdateManyWithoutOrgNestedInput
+    pullRequests?: PullRequestUncheckedUpdateManyWithoutOrgNestedInput
+    chatMessages?: ChatMessageUncheckedUpdateManyWithoutOrgNestedInput
   }
 
   export type OrganizationCreateManyInput = {
@@ -18055,12 +18277,14 @@ export namespace Prisma {
     deletions?: number
     filesChanged?: number
     committedAt: Date | string
+    org: OrganizationCreateNestedOneWithoutCommitsInput
     repo: RepositoryCreateNestedOneWithoutCommitsInput
     developer: DeveloperCreateNestedOneWithoutCommitsInput
   }
 
   export type CommitUncheckedCreateInput = {
     id?: string
+    orgId: string
     repoId: string
     developerId: string
     sha: string
@@ -18079,12 +18303,14 @@ export namespace Prisma {
     deletions?: IntFieldUpdateOperationsInput | number
     filesChanged?: IntFieldUpdateOperationsInput | number
     committedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    org?: OrganizationUpdateOneRequiredWithoutCommitsNestedInput
     repo?: RepositoryUpdateOneRequiredWithoutCommitsNestedInput
     developer?: DeveloperUpdateOneRequiredWithoutCommitsNestedInput
   }
 
   export type CommitUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    orgId?: StringFieldUpdateOperationsInput | string
     repoId?: StringFieldUpdateOperationsInput | string
     developerId?: StringFieldUpdateOperationsInput | string
     sha?: StringFieldUpdateOperationsInput | string
@@ -18097,6 +18323,7 @@ export namespace Prisma {
 
   export type CommitCreateManyInput = {
     id?: string
+    orgId: string
     repoId: string
     developerId: string
     sha: string
@@ -18119,6 +18346,7 @@ export namespace Prisma {
 
   export type CommitUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
+    orgId?: StringFieldUpdateOperationsInput | string
     repoId?: StringFieldUpdateOperationsInput | string
     developerId?: StringFieldUpdateOperationsInput | string
     sha?: StringFieldUpdateOperationsInput | string
@@ -18142,12 +18370,14 @@ export namespace Prisma {
     mergedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    org: OrganizationCreateNestedOneWithoutPullRequestsInput
     repo: RepositoryCreateNestedOneWithoutPullRequestsInput
     author: DeveloperCreateNestedOneWithoutPullRequestsInput
   }
 
   export type PullRequestUncheckedCreateInput = {
     id?: string
+    orgId: string
     repoId: string
     authorId: string
     githubId: number
@@ -18176,12 +18406,14 @@ export namespace Prisma {
     mergedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    org?: OrganizationUpdateOneRequiredWithoutPullRequestsNestedInput
     repo?: RepositoryUpdateOneRequiredWithoutPullRequestsNestedInput
     author?: DeveloperUpdateOneRequiredWithoutPullRequestsNestedInput
   }
 
   export type PullRequestUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    orgId?: StringFieldUpdateOperationsInput | string
     repoId?: StringFieldUpdateOperationsInput | string
     authorId?: StringFieldUpdateOperationsInput | string
     githubId?: IntFieldUpdateOperationsInput | number
@@ -18199,6 +18431,7 @@ export namespace Prisma {
 
   export type PullRequestCreateManyInput = {
     id?: string
+    orgId: string
     repoId: string
     authorId: string
     githubId: number
@@ -18231,6 +18464,7 @@ export namespace Prisma {
 
   export type PullRequestUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
+    orgId?: StringFieldUpdateOperationsInput | string
     repoId?: StringFieldUpdateOperationsInput | string
     authorId?: StringFieldUpdateOperationsInput | string
     githubId?: IntFieldUpdateOperationsInput | number
@@ -18673,11 +18907,13 @@ export namespace Prisma {
     sources?: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     session: ChatSessionCreateNestedOneWithoutMessagesInput
+    org: OrganizationCreateNestedOneWithoutChatMessagesInput
   }
 
   export type ChatMessageUncheckedCreateInput = {
     id?: string
     sessionId: string
+    orgId: string
     role: string
     content: string
     sources?: JsonNullValueInput | InputJsonValue
@@ -18691,11 +18927,13 @@ export namespace Prisma {
     sources?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     session?: ChatSessionUpdateOneRequiredWithoutMessagesNestedInput
+    org?: OrganizationUpdateOneRequiredWithoutChatMessagesNestedInput
   }
 
   export type ChatMessageUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     sessionId?: StringFieldUpdateOperationsInput | string
+    orgId?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     sources?: JsonNullValueInput | InputJsonValue
@@ -18705,6 +18943,7 @@ export namespace Prisma {
   export type ChatMessageCreateManyInput = {
     id?: string
     sessionId: string
+    orgId: string
     role: string
     content: string
     sources?: JsonNullValueInput | InputJsonValue
@@ -18722,6 +18961,7 @@ export namespace Prisma {
   export type ChatMessageUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     sessionId?: StringFieldUpdateOperationsInput | string
+    orgId?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     sources?: JsonNullValueInput | InputJsonValue
@@ -18817,6 +19057,24 @@ export namespace Prisma {
     none?: ChatSessionWhereInput
   }
 
+  export type CommitListRelationFilter = {
+    every?: CommitWhereInput
+    some?: CommitWhereInput
+    none?: CommitWhereInput
+  }
+
+  export type PullRequestListRelationFilter = {
+    every?: PullRequestWhereInput
+    some?: PullRequestWhereInput
+    none?: PullRequestWhereInput
+  }
+
+  export type ChatMessageListRelationFilter = {
+    every?: ChatMessageWhereInput
+    some?: ChatMessageWhereInput
+    none?: ChatMessageWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -18851,6 +19109,18 @@ export namespace Prisma {
   }
 
   export type ChatSessionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CommitOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type PullRequestOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ChatMessageOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -18996,26 +19266,6 @@ export namespace Prisma {
   export type BoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
-  export type CommitListRelationFilter = {
-    every?: CommitWhereInput
-    some?: CommitWhereInput
-    none?: CommitWhereInput
-  }
-
-  export type PullRequestListRelationFilter = {
-    every?: PullRequestWhereInput
-    some?: PullRequestWhereInput
-    none?: PullRequestWhereInput
-  }
-
-  export type CommitOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type PullRequestOrderByRelationAggregateInput = {
-    _count?: SortOrder
   }
 
   export type RepositoryCountOrderByAggregateInput = {
@@ -19196,6 +19446,7 @@ export namespace Prisma {
 
   export type CommitCountOrderByAggregateInput = {
     id?: SortOrder
+    orgId?: SortOrder
     repoId?: SortOrder
     developerId?: SortOrder
     sha?: SortOrder
@@ -19214,6 +19465,7 @@ export namespace Prisma {
 
   export type CommitMaxOrderByAggregateInput = {
     id?: SortOrder
+    orgId?: SortOrder
     repoId?: SortOrder
     developerId?: SortOrder
     sha?: SortOrder
@@ -19226,6 +19478,7 @@ export namespace Prisma {
 
   export type CommitMinOrderByAggregateInput = {
     id?: SortOrder
+    orgId?: SortOrder
     repoId?: SortOrder
     developerId?: SortOrder
     sha?: SortOrder
@@ -19262,6 +19515,7 @@ export namespace Prisma {
 
   export type PullRequestCountOrderByAggregateInput = {
     id?: SortOrder
+    orgId?: SortOrder
     repoId?: SortOrder
     authorId?: SortOrder
     githubId?: SortOrder
@@ -19287,6 +19541,7 @@ export namespace Prisma {
 
   export type PullRequestMaxOrderByAggregateInput = {
     id?: SortOrder
+    orgId?: SortOrder
     repoId?: SortOrder
     authorId?: SortOrder
     githubId?: SortOrder
@@ -19304,6 +19559,7 @@ export namespace Prisma {
 
   export type PullRequestMinOrderByAggregateInput = {
     id?: SortOrder
+    orgId?: SortOrder
     repoId?: SortOrder
     authorId?: SortOrder
     githubId?: SortOrder
@@ -19661,16 +19917,6 @@ export namespace Prisma {
     _max?: NestedJsonFilter<$PrismaModel>
   }
 
-  export type ChatMessageListRelationFilter = {
-    every?: ChatMessageWhereInput
-    some?: ChatMessageWhereInput
-    none?: ChatMessageWhereInput
-  }
-
-  export type ChatMessageOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
   export type ChatSessionCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
@@ -19703,6 +19949,7 @@ export namespace Prisma {
   export type ChatMessageCountOrderByAggregateInput = {
     id?: SortOrder
     sessionId?: SortOrder
+    orgId?: SortOrder
     role?: SortOrder
     content?: SortOrder
     sources?: SortOrder
@@ -19712,6 +19959,7 @@ export namespace Prisma {
   export type ChatMessageMaxOrderByAggregateInput = {
     id?: SortOrder
     sessionId?: SortOrder
+    orgId?: SortOrder
     role?: SortOrder
     content?: SortOrder
     createdAt?: SortOrder
@@ -19720,6 +19968,7 @@ export namespace Prisma {
   export type ChatMessageMinOrderByAggregateInput = {
     id?: SortOrder
     sessionId?: SortOrder
+    orgId?: SortOrder
     role?: SortOrder
     content?: SortOrder
     createdAt?: SortOrder
@@ -19781,6 +20030,27 @@ export namespace Prisma {
     connect?: ChatSessionWhereUniqueInput | ChatSessionWhereUniqueInput[]
   }
 
+  export type CommitCreateNestedManyWithoutOrgInput = {
+    create?: XOR<CommitCreateWithoutOrgInput, CommitUncheckedCreateWithoutOrgInput> | CommitCreateWithoutOrgInput[] | CommitUncheckedCreateWithoutOrgInput[]
+    connectOrCreate?: CommitCreateOrConnectWithoutOrgInput | CommitCreateOrConnectWithoutOrgInput[]
+    createMany?: CommitCreateManyOrgInputEnvelope
+    connect?: CommitWhereUniqueInput | CommitWhereUniqueInput[]
+  }
+
+  export type PullRequestCreateNestedManyWithoutOrgInput = {
+    create?: XOR<PullRequestCreateWithoutOrgInput, PullRequestUncheckedCreateWithoutOrgInput> | PullRequestCreateWithoutOrgInput[] | PullRequestUncheckedCreateWithoutOrgInput[]
+    connectOrCreate?: PullRequestCreateOrConnectWithoutOrgInput | PullRequestCreateOrConnectWithoutOrgInput[]
+    createMany?: PullRequestCreateManyOrgInputEnvelope
+    connect?: PullRequestWhereUniqueInput | PullRequestWhereUniqueInput[]
+  }
+
+  export type ChatMessageCreateNestedManyWithoutOrgInput = {
+    create?: XOR<ChatMessageCreateWithoutOrgInput, ChatMessageUncheckedCreateWithoutOrgInput> | ChatMessageCreateWithoutOrgInput[] | ChatMessageUncheckedCreateWithoutOrgInput[]
+    connectOrCreate?: ChatMessageCreateOrConnectWithoutOrgInput | ChatMessageCreateOrConnectWithoutOrgInput[]
+    createMany?: ChatMessageCreateManyOrgInputEnvelope
+    connect?: ChatMessageWhereUniqueInput | ChatMessageWhereUniqueInput[]
+  }
+
   export type OrgMemberUncheckedCreateNestedManyWithoutOrgInput = {
     create?: XOR<OrgMemberCreateWithoutOrgInput, OrgMemberUncheckedCreateWithoutOrgInput> | OrgMemberCreateWithoutOrgInput[] | OrgMemberUncheckedCreateWithoutOrgInput[]
     connectOrCreate?: OrgMemberCreateOrConnectWithoutOrgInput | OrgMemberCreateOrConnectWithoutOrgInput[]
@@ -19835,6 +20105,27 @@ export namespace Prisma {
     connectOrCreate?: ChatSessionCreateOrConnectWithoutOrgInput | ChatSessionCreateOrConnectWithoutOrgInput[]
     createMany?: ChatSessionCreateManyOrgInputEnvelope
     connect?: ChatSessionWhereUniqueInput | ChatSessionWhereUniqueInput[]
+  }
+
+  export type CommitUncheckedCreateNestedManyWithoutOrgInput = {
+    create?: XOR<CommitCreateWithoutOrgInput, CommitUncheckedCreateWithoutOrgInput> | CommitCreateWithoutOrgInput[] | CommitUncheckedCreateWithoutOrgInput[]
+    connectOrCreate?: CommitCreateOrConnectWithoutOrgInput | CommitCreateOrConnectWithoutOrgInput[]
+    createMany?: CommitCreateManyOrgInputEnvelope
+    connect?: CommitWhereUniqueInput | CommitWhereUniqueInput[]
+  }
+
+  export type PullRequestUncheckedCreateNestedManyWithoutOrgInput = {
+    create?: XOR<PullRequestCreateWithoutOrgInput, PullRequestUncheckedCreateWithoutOrgInput> | PullRequestCreateWithoutOrgInput[] | PullRequestUncheckedCreateWithoutOrgInput[]
+    connectOrCreate?: PullRequestCreateOrConnectWithoutOrgInput | PullRequestCreateOrConnectWithoutOrgInput[]
+    createMany?: PullRequestCreateManyOrgInputEnvelope
+    connect?: PullRequestWhereUniqueInput | PullRequestWhereUniqueInput[]
+  }
+
+  export type ChatMessageUncheckedCreateNestedManyWithoutOrgInput = {
+    create?: XOR<ChatMessageCreateWithoutOrgInput, ChatMessageUncheckedCreateWithoutOrgInput> | ChatMessageCreateWithoutOrgInput[] | ChatMessageUncheckedCreateWithoutOrgInput[]
+    connectOrCreate?: ChatMessageCreateOrConnectWithoutOrgInput | ChatMessageCreateOrConnectWithoutOrgInput[]
+    createMany?: ChatMessageCreateManyOrgInputEnvelope
+    connect?: ChatMessageWhereUniqueInput | ChatMessageWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -19961,6 +20252,48 @@ export namespace Prisma {
     deleteMany?: ChatSessionScalarWhereInput | ChatSessionScalarWhereInput[]
   }
 
+  export type CommitUpdateManyWithoutOrgNestedInput = {
+    create?: XOR<CommitCreateWithoutOrgInput, CommitUncheckedCreateWithoutOrgInput> | CommitCreateWithoutOrgInput[] | CommitUncheckedCreateWithoutOrgInput[]
+    connectOrCreate?: CommitCreateOrConnectWithoutOrgInput | CommitCreateOrConnectWithoutOrgInput[]
+    upsert?: CommitUpsertWithWhereUniqueWithoutOrgInput | CommitUpsertWithWhereUniqueWithoutOrgInput[]
+    createMany?: CommitCreateManyOrgInputEnvelope
+    set?: CommitWhereUniqueInput | CommitWhereUniqueInput[]
+    disconnect?: CommitWhereUniqueInput | CommitWhereUniqueInput[]
+    delete?: CommitWhereUniqueInput | CommitWhereUniqueInput[]
+    connect?: CommitWhereUniqueInput | CommitWhereUniqueInput[]
+    update?: CommitUpdateWithWhereUniqueWithoutOrgInput | CommitUpdateWithWhereUniqueWithoutOrgInput[]
+    updateMany?: CommitUpdateManyWithWhereWithoutOrgInput | CommitUpdateManyWithWhereWithoutOrgInput[]
+    deleteMany?: CommitScalarWhereInput | CommitScalarWhereInput[]
+  }
+
+  export type PullRequestUpdateManyWithoutOrgNestedInput = {
+    create?: XOR<PullRequestCreateWithoutOrgInput, PullRequestUncheckedCreateWithoutOrgInput> | PullRequestCreateWithoutOrgInput[] | PullRequestUncheckedCreateWithoutOrgInput[]
+    connectOrCreate?: PullRequestCreateOrConnectWithoutOrgInput | PullRequestCreateOrConnectWithoutOrgInput[]
+    upsert?: PullRequestUpsertWithWhereUniqueWithoutOrgInput | PullRequestUpsertWithWhereUniqueWithoutOrgInput[]
+    createMany?: PullRequestCreateManyOrgInputEnvelope
+    set?: PullRequestWhereUniqueInput | PullRequestWhereUniqueInput[]
+    disconnect?: PullRequestWhereUniqueInput | PullRequestWhereUniqueInput[]
+    delete?: PullRequestWhereUniqueInput | PullRequestWhereUniqueInput[]
+    connect?: PullRequestWhereUniqueInput | PullRequestWhereUniqueInput[]
+    update?: PullRequestUpdateWithWhereUniqueWithoutOrgInput | PullRequestUpdateWithWhereUniqueWithoutOrgInput[]
+    updateMany?: PullRequestUpdateManyWithWhereWithoutOrgInput | PullRequestUpdateManyWithWhereWithoutOrgInput[]
+    deleteMany?: PullRequestScalarWhereInput | PullRequestScalarWhereInput[]
+  }
+
+  export type ChatMessageUpdateManyWithoutOrgNestedInput = {
+    create?: XOR<ChatMessageCreateWithoutOrgInput, ChatMessageUncheckedCreateWithoutOrgInput> | ChatMessageCreateWithoutOrgInput[] | ChatMessageUncheckedCreateWithoutOrgInput[]
+    connectOrCreate?: ChatMessageCreateOrConnectWithoutOrgInput | ChatMessageCreateOrConnectWithoutOrgInput[]
+    upsert?: ChatMessageUpsertWithWhereUniqueWithoutOrgInput | ChatMessageUpsertWithWhereUniqueWithoutOrgInput[]
+    createMany?: ChatMessageCreateManyOrgInputEnvelope
+    set?: ChatMessageWhereUniqueInput | ChatMessageWhereUniqueInput[]
+    disconnect?: ChatMessageWhereUniqueInput | ChatMessageWhereUniqueInput[]
+    delete?: ChatMessageWhereUniqueInput | ChatMessageWhereUniqueInput[]
+    connect?: ChatMessageWhereUniqueInput | ChatMessageWhereUniqueInput[]
+    update?: ChatMessageUpdateWithWhereUniqueWithoutOrgInput | ChatMessageUpdateWithWhereUniqueWithoutOrgInput[]
+    updateMany?: ChatMessageUpdateManyWithWhereWithoutOrgInput | ChatMessageUpdateManyWithWhereWithoutOrgInput[]
+    deleteMany?: ChatMessageScalarWhereInput | ChatMessageScalarWhereInput[]
+  }
+
   export type OrgMemberUncheckedUpdateManyWithoutOrgNestedInput = {
     create?: XOR<OrgMemberCreateWithoutOrgInput, OrgMemberUncheckedCreateWithoutOrgInput> | OrgMemberCreateWithoutOrgInput[] | OrgMemberUncheckedCreateWithoutOrgInput[]
     connectOrCreate?: OrgMemberCreateOrConnectWithoutOrgInput | OrgMemberCreateOrConnectWithoutOrgInput[]
@@ -20071,6 +20404,48 @@ export namespace Prisma {
     update?: ChatSessionUpdateWithWhereUniqueWithoutOrgInput | ChatSessionUpdateWithWhereUniqueWithoutOrgInput[]
     updateMany?: ChatSessionUpdateManyWithWhereWithoutOrgInput | ChatSessionUpdateManyWithWhereWithoutOrgInput[]
     deleteMany?: ChatSessionScalarWhereInput | ChatSessionScalarWhereInput[]
+  }
+
+  export type CommitUncheckedUpdateManyWithoutOrgNestedInput = {
+    create?: XOR<CommitCreateWithoutOrgInput, CommitUncheckedCreateWithoutOrgInput> | CommitCreateWithoutOrgInput[] | CommitUncheckedCreateWithoutOrgInput[]
+    connectOrCreate?: CommitCreateOrConnectWithoutOrgInput | CommitCreateOrConnectWithoutOrgInput[]
+    upsert?: CommitUpsertWithWhereUniqueWithoutOrgInput | CommitUpsertWithWhereUniqueWithoutOrgInput[]
+    createMany?: CommitCreateManyOrgInputEnvelope
+    set?: CommitWhereUniqueInput | CommitWhereUniqueInput[]
+    disconnect?: CommitWhereUniqueInput | CommitWhereUniqueInput[]
+    delete?: CommitWhereUniqueInput | CommitWhereUniqueInput[]
+    connect?: CommitWhereUniqueInput | CommitWhereUniqueInput[]
+    update?: CommitUpdateWithWhereUniqueWithoutOrgInput | CommitUpdateWithWhereUniqueWithoutOrgInput[]
+    updateMany?: CommitUpdateManyWithWhereWithoutOrgInput | CommitUpdateManyWithWhereWithoutOrgInput[]
+    deleteMany?: CommitScalarWhereInput | CommitScalarWhereInput[]
+  }
+
+  export type PullRequestUncheckedUpdateManyWithoutOrgNestedInput = {
+    create?: XOR<PullRequestCreateWithoutOrgInput, PullRequestUncheckedCreateWithoutOrgInput> | PullRequestCreateWithoutOrgInput[] | PullRequestUncheckedCreateWithoutOrgInput[]
+    connectOrCreate?: PullRequestCreateOrConnectWithoutOrgInput | PullRequestCreateOrConnectWithoutOrgInput[]
+    upsert?: PullRequestUpsertWithWhereUniqueWithoutOrgInput | PullRequestUpsertWithWhereUniqueWithoutOrgInput[]
+    createMany?: PullRequestCreateManyOrgInputEnvelope
+    set?: PullRequestWhereUniqueInput | PullRequestWhereUniqueInput[]
+    disconnect?: PullRequestWhereUniqueInput | PullRequestWhereUniqueInput[]
+    delete?: PullRequestWhereUniqueInput | PullRequestWhereUniqueInput[]
+    connect?: PullRequestWhereUniqueInput | PullRequestWhereUniqueInput[]
+    update?: PullRequestUpdateWithWhereUniqueWithoutOrgInput | PullRequestUpdateWithWhereUniqueWithoutOrgInput[]
+    updateMany?: PullRequestUpdateManyWithWhereWithoutOrgInput | PullRequestUpdateManyWithWhereWithoutOrgInput[]
+    deleteMany?: PullRequestScalarWhereInput | PullRequestScalarWhereInput[]
+  }
+
+  export type ChatMessageUncheckedUpdateManyWithoutOrgNestedInput = {
+    create?: XOR<ChatMessageCreateWithoutOrgInput, ChatMessageUncheckedCreateWithoutOrgInput> | ChatMessageCreateWithoutOrgInput[] | ChatMessageUncheckedCreateWithoutOrgInput[]
+    connectOrCreate?: ChatMessageCreateOrConnectWithoutOrgInput | ChatMessageCreateOrConnectWithoutOrgInput[]
+    upsert?: ChatMessageUpsertWithWhereUniqueWithoutOrgInput | ChatMessageUpsertWithWhereUniqueWithoutOrgInput[]
+    createMany?: ChatMessageCreateManyOrgInputEnvelope
+    set?: ChatMessageWhereUniqueInput | ChatMessageWhereUniqueInput[]
+    disconnect?: ChatMessageWhereUniqueInput | ChatMessageWhereUniqueInput[]
+    delete?: ChatMessageWhereUniqueInput | ChatMessageWhereUniqueInput[]
+    connect?: ChatMessageWhereUniqueInput | ChatMessageWhereUniqueInput[]
+    update?: ChatMessageUpdateWithWhereUniqueWithoutOrgInput | ChatMessageUpdateWithWhereUniqueWithoutOrgInput[]
+    updateMany?: ChatMessageUpdateManyWithWhereWithoutOrgInput | ChatMessageUpdateManyWithWhereWithoutOrgInput[]
+    deleteMany?: ChatMessageScalarWhereInput | ChatMessageScalarWhereInput[]
   }
 
   export type OrganizationCreateNestedOneWithoutMembersInput = {
@@ -20400,6 +20775,12 @@ export namespace Prisma {
     deleteMany?: TaskScalarWhereInput | TaskScalarWhereInput[]
   }
 
+  export type OrganizationCreateNestedOneWithoutCommitsInput = {
+    create?: XOR<OrganizationCreateWithoutCommitsInput, OrganizationUncheckedCreateWithoutCommitsInput>
+    connectOrCreate?: OrganizationCreateOrConnectWithoutCommitsInput
+    connect?: OrganizationWhereUniqueInput
+  }
+
   export type RepositoryCreateNestedOneWithoutCommitsInput = {
     create?: XOR<RepositoryCreateWithoutCommitsInput, RepositoryUncheckedCreateWithoutCommitsInput>
     connectOrCreate?: RepositoryCreateOrConnectWithoutCommitsInput
@@ -20410,6 +20791,14 @@ export namespace Prisma {
     create?: XOR<DeveloperCreateWithoutCommitsInput, DeveloperUncheckedCreateWithoutCommitsInput>
     connectOrCreate?: DeveloperCreateOrConnectWithoutCommitsInput
     connect?: DeveloperWhereUniqueInput
+  }
+
+  export type OrganizationUpdateOneRequiredWithoutCommitsNestedInput = {
+    create?: XOR<OrganizationCreateWithoutCommitsInput, OrganizationUncheckedCreateWithoutCommitsInput>
+    connectOrCreate?: OrganizationCreateOrConnectWithoutCommitsInput
+    upsert?: OrganizationUpsertWithoutCommitsInput
+    connect?: OrganizationWhereUniqueInput
+    update?: XOR<XOR<OrganizationUpdateToOneWithWhereWithoutCommitsInput, OrganizationUpdateWithoutCommitsInput>, OrganizationUncheckedUpdateWithoutCommitsInput>
   }
 
   export type RepositoryUpdateOneRequiredWithoutCommitsNestedInput = {
@@ -20426,6 +20815,12 @@ export namespace Prisma {
     upsert?: DeveloperUpsertWithoutCommitsInput
     connect?: DeveloperWhereUniqueInput
     update?: XOR<XOR<DeveloperUpdateToOneWithWhereWithoutCommitsInput, DeveloperUpdateWithoutCommitsInput>, DeveloperUncheckedUpdateWithoutCommitsInput>
+  }
+
+  export type OrganizationCreateNestedOneWithoutPullRequestsInput = {
+    create?: XOR<OrganizationCreateWithoutPullRequestsInput, OrganizationUncheckedCreateWithoutPullRequestsInput>
+    connectOrCreate?: OrganizationCreateOrConnectWithoutPullRequestsInput
+    connect?: OrganizationWhereUniqueInput
   }
 
   export type RepositoryCreateNestedOneWithoutPullRequestsInput = {
@@ -20446,6 +20841,14 @@ export namespace Prisma {
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
     set?: Date | string | null
+  }
+
+  export type OrganizationUpdateOneRequiredWithoutPullRequestsNestedInput = {
+    create?: XOR<OrganizationCreateWithoutPullRequestsInput, OrganizationUncheckedCreateWithoutPullRequestsInput>
+    connectOrCreate?: OrganizationCreateOrConnectWithoutPullRequestsInput
+    upsert?: OrganizationUpsertWithoutPullRequestsInput
+    connect?: OrganizationWhereUniqueInput
+    update?: XOR<XOR<OrganizationUpdateToOneWithWhereWithoutPullRequestsInput, OrganizationUpdateWithoutPullRequestsInput>, OrganizationUncheckedUpdateWithoutPullRequestsInput>
   }
 
   export type RepositoryUpdateOneRequiredWithoutPullRequestsNestedInput = {
@@ -20719,12 +21122,26 @@ export namespace Prisma {
     connect?: ChatSessionWhereUniqueInput
   }
 
+  export type OrganizationCreateNestedOneWithoutChatMessagesInput = {
+    create?: XOR<OrganizationCreateWithoutChatMessagesInput, OrganizationUncheckedCreateWithoutChatMessagesInput>
+    connectOrCreate?: OrganizationCreateOrConnectWithoutChatMessagesInput
+    connect?: OrganizationWhereUniqueInput
+  }
+
   export type ChatSessionUpdateOneRequiredWithoutMessagesNestedInput = {
     create?: XOR<ChatSessionCreateWithoutMessagesInput, ChatSessionUncheckedCreateWithoutMessagesInput>
     connectOrCreate?: ChatSessionCreateOrConnectWithoutMessagesInput
     upsert?: ChatSessionUpsertWithoutMessagesInput
     connect?: ChatSessionWhereUniqueInput
     update?: XOR<XOR<ChatSessionUpdateToOneWithWhereWithoutMessagesInput, ChatSessionUpdateWithoutMessagesInput>, ChatSessionUncheckedUpdateWithoutMessagesInput>
+  }
+
+  export type OrganizationUpdateOneRequiredWithoutChatMessagesNestedInput = {
+    create?: XOR<OrganizationCreateWithoutChatMessagesInput, OrganizationUncheckedCreateWithoutChatMessagesInput>
+    connectOrCreate?: OrganizationCreateOrConnectWithoutChatMessagesInput
+    upsert?: OrganizationUpsertWithoutChatMessagesInput
+    connect?: OrganizationWhereUniqueInput
+    update?: XOR<XOR<OrganizationUpdateToOneWithWhereWithoutChatMessagesInput, OrganizationUpdateWithoutChatMessagesInput>, OrganizationUncheckedUpdateWithoutChatMessagesInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -21322,6 +21739,112 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type CommitCreateWithoutOrgInput = {
+    id?: string
+    sha: string
+    message: string
+    additions?: number
+    deletions?: number
+    filesChanged?: number
+    committedAt: Date | string
+    repo: RepositoryCreateNestedOneWithoutCommitsInput
+    developer: DeveloperCreateNestedOneWithoutCommitsInput
+  }
+
+  export type CommitUncheckedCreateWithoutOrgInput = {
+    id?: string
+    repoId: string
+    developerId: string
+    sha: string
+    message: string
+    additions?: number
+    deletions?: number
+    filesChanged?: number
+    committedAt: Date | string
+  }
+
+  export type CommitCreateOrConnectWithoutOrgInput = {
+    where: CommitWhereUniqueInput
+    create: XOR<CommitCreateWithoutOrgInput, CommitUncheckedCreateWithoutOrgInput>
+  }
+
+  export type CommitCreateManyOrgInputEnvelope = {
+    data: CommitCreateManyOrgInput | CommitCreateManyOrgInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type PullRequestCreateWithoutOrgInput = {
+    id?: string
+    githubId: number
+    number: number
+    title: string
+    body?: string | null
+    state?: $Enums.PRState
+    reviewCycles?: number
+    additions?: number
+    deletions?: number
+    mergedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    repo: RepositoryCreateNestedOneWithoutPullRequestsInput
+    author: DeveloperCreateNestedOneWithoutPullRequestsInput
+  }
+
+  export type PullRequestUncheckedCreateWithoutOrgInput = {
+    id?: string
+    repoId: string
+    authorId: string
+    githubId: number
+    number: number
+    title: string
+    body?: string | null
+    state?: $Enums.PRState
+    reviewCycles?: number
+    additions?: number
+    deletions?: number
+    mergedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PullRequestCreateOrConnectWithoutOrgInput = {
+    where: PullRequestWhereUniqueInput
+    create: XOR<PullRequestCreateWithoutOrgInput, PullRequestUncheckedCreateWithoutOrgInput>
+  }
+
+  export type PullRequestCreateManyOrgInputEnvelope = {
+    data: PullRequestCreateManyOrgInput | PullRequestCreateManyOrgInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ChatMessageCreateWithoutOrgInput = {
+    id?: string
+    role: string
+    content: string
+    sources?: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    session: ChatSessionCreateNestedOneWithoutMessagesInput
+  }
+
+  export type ChatMessageUncheckedCreateWithoutOrgInput = {
+    id?: string
+    sessionId: string
+    role: string
+    content: string
+    sources?: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+  }
+
+  export type ChatMessageCreateOrConnectWithoutOrgInput = {
+    where: ChatMessageWhereUniqueInput
+    create: XOR<ChatMessageCreateWithoutOrgInput, ChatMessageUncheckedCreateWithoutOrgInput>
+  }
+
+  export type ChatMessageCreateManyOrgInputEnvelope = {
+    data: ChatMessageCreateManyOrgInput | ChatMessageCreateManyOrgInput[]
+    skipDuplicates?: boolean
+  }
+
   export type OrgMemberUpsertWithWhereUniqueWithoutOrgInput = {
     where: OrgMemberWhereUniqueInput
     update: XOR<OrgMemberUpdateWithoutOrgInput, OrgMemberUncheckedUpdateWithoutOrgInput>
@@ -21569,6 +22092,104 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"ChatSession"> | Date | string
   }
 
+  export type CommitUpsertWithWhereUniqueWithoutOrgInput = {
+    where: CommitWhereUniqueInput
+    update: XOR<CommitUpdateWithoutOrgInput, CommitUncheckedUpdateWithoutOrgInput>
+    create: XOR<CommitCreateWithoutOrgInput, CommitUncheckedCreateWithoutOrgInput>
+  }
+
+  export type CommitUpdateWithWhereUniqueWithoutOrgInput = {
+    where: CommitWhereUniqueInput
+    data: XOR<CommitUpdateWithoutOrgInput, CommitUncheckedUpdateWithoutOrgInput>
+  }
+
+  export type CommitUpdateManyWithWhereWithoutOrgInput = {
+    where: CommitScalarWhereInput
+    data: XOR<CommitUpdateManyMutationInput, CommitUncheckedUpdateManyWithoutOrgInput>
+  }
+
+  export type CommitScalarWhereInput = {
+    AND?: CommitScalarWhereInput | CommitScalarWhereInput[]
+    OR?: CommitScalarWhereInput[]
+    NOT?: CommitScalarWhereInput | CommitScalarWhereInput[]
+    id?: StringFilter<"Commit"> | string
+    orgId?: StringFilter<"Commit"> | string
+    repoId?: StringFilter<"Commit"> | string
+    developerId?: StringFilter<"Commit"> | string
+    sha?: StringFilter<"Commit"> | string
+    message?: StringFilter<"Commit"> | string
+    additions?: IntFilter<"Commit"> | number
+    deletions?: IntFilter<"Commit"> | number
+    filesChanged?: IntFilter<"Commit"> | number
+    committedAt?: DateTimeFilter<"Commit"> | Date | string
+  }
+
+  export type PullRequestUpsertWithWhereUniqueWithoutOrgInput = {
+    where: PullRequestWhereUniqueInput
+    update: XOR<PullRequestUpdateWithoutOrgInput, PullRequestUncheckedUpdateWithoutOrgInput>
+    create: XOR<PullRequestCreateWithoutOrgInput, PullRequestUncheckedCreateWithoutOrgInput>
+  }
+
+  export type PullRequestUpdateWithWhereUniqueWithoutOrgInput = {
+    where: PullRequestWhereUniqueInput
+    data: XOR<PullRequestUpdateWithoutOrgInput, PullRequestUncheckedUpdateWithoutOrgInput>
+  }
+
+  export type PullRequestUpdateManyWithWhereWithoutOrgInput = {
+    where: PullRequestScalarWhereInput
+    data: XOR<PullRequestUpdateManyMutationInput, PullRequestUncheckedUpdateManyWithoutOrgInput>
+  }
+
+  export type PullRequestScalarWhereInput = {
+    AND?: PullRequestScalarWhereInput | PullRequestScalarWhereInput[]
+    OR?: PullRequestScalarWhereInput[]
+    NOT?: PullRequestScalarWhereInput | PullRequestScalarWhereInput[]
+    id?: StringFilter<"PullRequest"> | string
+    orgId?: StringFilter<"PullRequest"> | string
+    repoId?: StringFilter<"PullRequest"> | string
+    authorId?: StringFilter<"PullRequest"> | string
+    githubId?: IntFilter<"PullRequest"> | number
+    number?: IntFilter<"PullRequest"> | number
+    title?: StringFilter<"PullRequest"> | string
+    body?: StringNullableFilter<"PullRequest"> | string | null
+    state?: EnumPRStateFilter<"PullRequest"> | $Enums.PRState
+    reviewCycles?: IntFilter<"PullRequest"> | number
+    additions?: IntFilter<"PullRequest"> | number
+    deletions?: IntFilter<"PullRequest"> | number
+    mergedAt?: DateTimeNullableFilter<"PullRequest"> | Date | string | null
+    createdAt?: DateTimeFilter<"PullRequest"> | Date | string
+    updatedAt?: DateTimeFilter<"PullRequest"> | Date | string
+  }
+
+  export type ChatMessageUpsertWithWhereUniqueWithoutOrgInput = {
+    where: ChatMessageWhereUniqueInput
+    update: XOR<ChatMessageUpdateWithoutOrgInput, ChatMessageUncheckedUpdateWithoutOrgInput>
+    create: XOR<ChatMessageCreateWithoutOrgInput, ChatMessageUncheckedCreateWithoutOrgInput>
+  }
+
+  export type ChatMessageUpdateWithWhereUniqueWithoutOrgInput = {
+    where: ChatMessageWhereUniqueInput
+    data: XOR<ChatMessageUpdateWithoutOrgInput, ChatMessageUncheckedUpdateWithoutOrgInput>
+  }
+
+  export type ChatMessageUpdateManyWithWhereWithoutOrgInput = {
+    where: ChatMessageScalarWhereInput
+    data: XOR<ChatMessageUpdateManyMutationInput, ChatMessageUncheckedUpdateManyWithoutOrgInput>
+  }
+
+  export type ChatMessageScalarWhereInput = {
+    AND?: ChatMessageScalarWhereInput | ChatMessageScalarWhereInput[]
+    OR?: ChatMessageScalarWhereInput[]
+    NOT?: ChatMessageScalarWhereInput | ChatMessageScalarWhereInput[]
+    id?: StringFilter<"ChatMessage"> | string
+    sessionId?: StringFilter<"ChatMessage"> | string
+    orgId?: StringFilter<"ChatMessage"> | string
+    role?: StringFilter<"ChatMessage"> | string
+    content?: StringFilter<"ChatMessage"> | string
+    sources?: JsonFilter<"ChatMessage">
+    createdAt?: DateTimeFilter<"ChatMessage"> | Date | string
+  }
+
   export type OrganizationCreateWithoutMembersInput = {
     id?: string
     name: string
@@ -21584,6 +22205,9 @@ export namespace Prisma {
     tasks?: TaskCreateNestedManyWithoutOrgInput
     embeddings?: EmbeddingCreateNestedManyWithoutOrgInput
     chatSessions?: ChatSessionCreateNestedManyWithoutOrgInput
+    commits?: CommitCreateNestedManyWithoutOrgInput
+    pullRequests?: PullRequestCreateNestedManyWithoutOrgInput
+    chatMessages?: ChatMessageCreateNestedManyWithoutOrgInput
   }
 
   export type OrganizationUncheckedCreateWithoutMembersInput = {
@@ -21601,6 +22225,9 @@ export namespace Prisma {
     tasks?: TaskUncheckedCreateNestedManyWithoutOrgInput
     embeddings?: EmbeddingUncheckedCreateNestedManyWithoutOrgInput
     chatSessions?: ChatSessionUncheckedCreateNestedManyWithoutOrgInput
+    commits?: CommitUncheckedCreateNestedManyWithoutOrgInput
+    pullRequests?: PullRequestUncheckedCreateNestedManyWithoutOrgInput
+    chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutOrgInput
   }
 
   export type OrganizationCreateOrConnectWithoutMembersInput = {
@@ -21634,6 +22261,9 @@ export namespace Prisma {
     tasks?: TaskUpdateManyWithoutOrgNestedInput
     embeddings?: EmbeddingUpdateManyWithoutOrgNestedInput
     chatSessions?: ChatSessionUpdateManyWithoutOrgNestedInput
+    commits?: CommitUpdateManyWithoutOrgNestedInput
+    pullRequests?: PullRequestUpdateManyWithoutOrgNestedInput
+    chatMessages?: ChatMessageUpdateManyWithoutOrgNestedInput
   }
 
   export type OrganizationUncheckedUpdateWithoutMembersInput = {
@@ -21651,6 +22281,9 @@ export namespace Prisma {
     tasks?: TaskUncheckedUpdateManyWithoutOrgNestedInput
     embeddings?: EmbeddingUncheckedUpdateManyWithoutOrgNestedInput
     chatSessions?: ChatSessionUncheckedUpdateManyWithoutOrgNestedInput
+    commits?: CommitUncheckedUpdateManyWithoutOrgNestedInput
+    pullRequests?: PullRequestUncheckedUpdateManyWithoutOrgNestedInput
+    chatMessages?: ChatMessageUncheckedUpdateManyWithoutOrgNestedInput
   }
 
   export type OrganizationCreateWithoutReposInput = {
@@ -21668,6 +22301,9 @@ export namespace Prisma {
     tasks?: TaskCreateNestedManyWithoutOrgInput
     embeddings?: EmbeddingCreateNestedManyWithoutOrgInput
     chatSessions?: ChatSessionCreateNestedManyWithoutOrgInput
+    commits?: CommitCreateNestedManyWithoutOrgInput
+    pullRequests?: PullRequestCreateNestedManyWithoutOrgInput
+    chatMessages?: ChatMessageCreateNestedManyWithoutOrgInput
   }
 
   export type OrganizationUncheckedCreateWithoutReposInput = {
@@ -21685,6 +22321,9 @@ export namespace Prisma {
     tasks?: TaskUncheckedCreateNestedManyWithoutOrgInput
     embeddings?: EmbeddingUncheckedCreateNestedManyWithoutOrgInput
     chatSessions?: ChatSessionUncheckedCreateNestedManyWithoutOrgInput
+    commits?: CommitUncheckedCreateNestedManyWithoutOrgInput
+    pullRequests?: PullRequestUncheckedCreateNestedManyWithoutOrgInput
+    chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutOrgInput
   }
 
   export type OrganizationCreateOrConnectWithoutReposInput = {
@@ -21700,11 +22339,13 @@ export namespace Prisma {
     deletions?: number
     filesChanged?: number
     committedAt: Date | string
+    org: OrganizationCreateNestedOneWithoutCommitsInput
     developer: DeveloperCreateNestedOneWithoutCommitsInput
   }
 
   export type CommitUncheckedCreateWithoutRepoInput = {
     id?: string
+    orgId: string
     developerId: string
     sha: string
     message: string
@@ -21737,11 +22378,13 @@ export namespace Prisma {
     mergedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    org: OrganizationCreateNestedOneWithoutPullRequestsInput
     author: DeveloperCreateNestedOneWithoutPullRequestsInput
   }
 
   export type PullRequestUncheckedCreateWithoutRepoInput = {
     id?: string
+    orgId: string
     authorId: string
     githubId: number
     number: number
@@ -21822,6 +22465,9 @@ export namespace Prisma {
     tasks?: TaskUpdateManyWithoutOrgNestedInput
     embeddings?: EmbeddingUpdateManyWithoutOrgNestedInput
     chatSessions?: ChatSessionUpdateManyWithoutOrgNestedInput
+    commits?: CommitUpdateManyWithoutOrgNestedInput
+    pullRequests?: PullRequestUpdateManyWithoutOrgNestedInput
+    chatMessages?: ChatMessageUpdateManyWithoutOrgNestedInput
   }
 
   export type OrganizationUncheckedUpdateWithoutReposInput = {
@@ -21839,6 +22485,9 @@ export namespace Prisma {
     tasks?: TaskUncheckedUpdateManyWithoutOrgNestedInput
     embeddings?: EmbeddingUncheckedUpdateManyWithoutOrgNestedInput
     chatSessions?: ChatSessionUncheckedUpdateManyWithoutOrgNestedInput
+    commits?: CommitUncheckedUpdateManyWithoutOrgNestedInput
+    pullRequests?: PullRequestUncheckedUpdateManyWithoutOrgNestedInput
+    chatMessages?: ChatMessageUncheckedUpdateManyWithoutOrgNestedInput
   }
 
   export type CommitUpsertWithWhereUniqueWithoutRepoInput = {
@@ -21857,21 +22506,6 @@ export namespace Prisma {
     data: XOR<CommitUpdateManyMutationInput, CommitUncheckedUpdateManyWithoutRepoInput>
   }
 
-  export type CommitScalarWhereInput = {
-    AND?: CommitScalarWhereInput | CommitScalarWhereInput[]
-    OR?: CommitScalarWhereInput[]
-    NOT?: CommitScalarWhereInput | CommitScalarWhereInput[]
-    id?: StringFilter<"Commit"> | string
-    repoId?: StringFilter<"Commit"> | string
-    developerId?: StringFilter<"Commit"> | string
-    sha?: StringFilter<"Commit"> | string
-    message?: StringFilter<"Commit"> | string
-    additions?: IntFilter<"Commit"> | number
-    deletions?: IntFilter<"Commit"> | number
-    filesChanged?: IntFilter<"Commit"> | number
-    committedAt?: DateTimeFilter<"Commit"> | Date | string
-  }
-
   export type PullRequestUpsertWithWhereUniqueWithoutRepoInput = {
     where: PullRequestWhereUniqueInput
     update: XOR<PullRequestUpdateWithoutRepoInput, PullRequestUncheckedUpdateWithoutRepoInput>
@@ -21886,26 +22520,6 @@ export namespace Prisma {
   export type PullRequestUpdateManyWithWhereWithoutRepoInput = {
     where: PullRequestScalarWhereInput
     data: XOR<PullRequestUpdateManyMutationInput, PullRequestUncheckedUpdateManyWithoutRepoInput>
-  }
-
-  export type PullRequestScalarWhereInput = {
-    AND?: PullRequestScalarWhereInput | PullRequestScalarWhereInput[]
-    OR?: PullRequestScalarWhereInput[]
-    NOT?: PullRequestScalarWhereInput | PullRequestScalarWhereInput[]
-    id?: StringFilter<"PullRequest"> | string
-    repoId?: StringFilter<"PullRequest"> | string
-    authorId?: StringFilter<"PullRequest"> | string
-    githubId?: IntFilter<"PullRequest"> | number
-    number?: IntFilter<"PullRequest"> | number
-    title?: StringFilter<"PullRequest"> | string
-    body?: StringNullableFilter<"PullRequest"> | string | null
-    state?: EnumPRStateFilter<"PullRequest"> | $Enums.PRState
-    reviewCycles?: IntFilter<"PullRequest"> | number
-    additions?: IntFilter<"PullRequest"> | number
-    deletions?: IntFilter<"PullRequest"> | number
-    mergedAt?: DateTimeNullableFilter<"PullRequest"> | Date | string | null
-    createdAt?: DateTimeFilter<"PullRequest"> | Date | string
-    updatedAt?: DateTimeFilter<"PullRequest"> | Date | string
   }
 
   export type EmbeddingUpsertWithWhereUniqueWithoutRepoInput = {
@@ -21939,6 +22553,9 @@ export namespace Prisma {
     tasks?: TaskCreateNestedManyWithoutOrgInput
     embeddings?: EmbeddingCreateNestedManyWithoutOrgInput
     chatSessions?: ChatSessionCreateNestedManyWithoutOrgInput
+    commits?: CommitCreateNestedManyWithoutOrgInput
+    pullRequests?: PullRequestCreateNestedManyWithoutOrgInput
+    chatMessages?: ChatMessageCreateNestedManyWithoutOrgInput
   }
 
   export type OrganizationUncheckedCreateWithoutDevelopersInput = {
@@ -21956,6 +22573,9 @@ export namespace Prisma {
     tasks?: TaskUncheckedCreateNestedManyWithoutOrgInput
     embeddings?: EmbeddingUncheckedCreateNestedManyWithoutOrgInput
     chatSessions?: ChatSessionUncheckedCreateNestedManyWithoutOrgInput
+    commits?: CommitUncheckedCreateNestedManyWithoutOrgInput
+    pullRequests?: PullRequestUncheckedCreateNestedManyWithoutOrgInput
+    chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutOrgInput
   }
 
   export type OrganizationCreateOrConnectWithoutDevelopersInput = {
@@ -21971,11 +22591,13 @@ export namespace Prisma {
     deletions?: number
     filesChanged?: number
     committedAt: Date | string
+    org: OrganizationCreateNestedOneWithoutCommitsInput
     repo: RepositoryCreateNestedOneWithoutCommitsInput
   }
 
   export type CommitUncheckedCreateWithoutDeveloperInput = {
     id?: string
+    orgId: string
     repoId: string
     sha: string
     message: string
@@ -22008,11 +22630,13 @@ export namespace Prisma {
     mergedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    org: OrganizationCreateNestedOneWithoutPullRequestsInput
     repo: RepositoryCreateNestedOneWithoutPullRequestsInput
   }
 
   export type PullRequestUncheckedCreateWithoutAuthorInput = {
     id?: string
+    orgId: string
     repoId: string
     githubId: number
     number: number
@@ -22101,6 +22725,9 @@ export namespace Prisma {
     tasks?: TaskUpdateManyWithoutOrgNestedInput
     embeddings?: EmbeddingUpdateManyWithoutOrgNestedInput
     chatSessions?: ChatSessionUpdateManyWithoutOrgNestedInput
+    commits?: CommitUpdateManyWithoutOrgNestedInput
+    pullRequests?: PullRequestUpdateManyWithoutOrgNestedInput
+    chatMessages?: ChatMessageUpdateManyWithoutOrgNestedInput
   }
 
   export type OrganizationUncheckedUpdateWithoutDevelopersInput = {
@@ -22118,6 +22745,9 @@ export namespace Prisma {
     tasks?: TaskUncheckedUpdateManyWithoutOrgNestedInput
     embeddings?: EmbeddingUncheckedUpdateManyWithoutOrgNestedInput
     chatSessions?: ChatSessionUncheckedUpdateManyWithoutOrgNestedInput
+    commits?: CommitUncheckedUpdateManyWithoutOrgNestedInput
+    pullRequests?: PullRequestUncheckedUpdateManyWithoutOrgNestedInput
+    chatMessages?: ChatMessageUncheckedUpdateManyWithoutOrgNestedInput
   }
 
   export type CommitUpsertWithWhereUniqueWithoutDeveloperInput = {
@@ -22166,6 +22796,51 @@ export namespace Prisma {
   export type TaskUpdateManyWithWhereWithoutAssigneeInput = {
     where: TaskScalarWhereInput
     data: XOR<TaskUpdateManyMutationInput, TaskUncheckedUpdateManyWithoutAssigneeInput>
+  }
+
+  export type OrganizationCreateWithoutCommitsInput = {
+    id?: string
+    name: string
+    slug: string
+    githubOrgId?: string | null
+    discordGuildId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    members?: OrgMemberCreateNestedManyWithoutOrgInput
+    repos?: RepositoryCreateNestedManyWithoutOrgInput
+    developers?: DeveloperCreateNestedManyWithoutOrgInput
+    sprints?: SprintCreateNestedManyWithoutOrgInput
+    meetings?: MeetingCreateNestedManyWithoutOrgInput
+    tasks?: TaskCreateNestedManyWithoutOrgInput
+    embeddings?: EmbeddingCreateNestedManyWithoutOrgInput
+    chatSessions?: ChatSessionCreateNestedManyWithoutOrgInput
+    pullRequests?: PullRequestCreateNestedManyWithoutOrgInput
+    chatMessages?: ChatMessageCreateNestedManyWithoutOrgInput
+  }
+
+  export type OrganizationUncheckedCreateWithoutCommitsInput = {
+    id?: string
+    name: string
+    slug: string
+    githubOrgId?: string | null
+    discordGuildId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    members?: OrgMemberUncheckedCreateNestedManyWithoutOrgInput
+    repos?: RepositoryUncheckedCreateNestedManyWithoutOrgInput
+    developers?: DeveloperUncheckedCreateNestedManyWithoutOrgInput
+    sprints?: SprintUncheckedCreateNestedManyWithoutOrgInput
+    meetings?: MeetingUncheckedCreateNestedManyWithoutOrgInput
+    tasks?: TaskUncheckedCreateNestedManyWithoutOrgInput
+    embeddings?: EmbeddingUncheckedCreateNestedManyWithoutOrgInput
+    chatSessions?: ChatSessionUncheckedCreateNestedManyWithoutOrgInput
+    pullRequests?: PullRequestUncheckedCreateNestedManyWithoutOrgInput
+    chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutOrgInput
+  }
+
+  export type OrganizationCreateOrConnectWithoutCommitsInput = {
+    where: OrganizationWhereUniqueInput
+    create: XOR<OrganizationCreateWithoutCommitsInput, OrganizationUncheckedCreateWithoutCommitsInput>
   }
 
   export type RepositoryCreateWithoutCommitsInput = {
@@ -22240,6 +22915,57 @@ export namespace Prisma {
   export type DeveloperCreateOrConnectWithoutCommitsInput = {
     where: DeveloperWhereUniqueInput
     create: XOR<DeveloperCreateWithoutCommitsInput, DeveloperUncheckedCreateWithoutCommitsInput>
+  }
+
+  export type OrganizationUpsertWithoutCommitsInput = {
+    update: XOR<OrganizationUpdateWithoutCommitsInput, OrganizationUncheckedUpdateWithoutCommitsInput>
+    create: XOR<OrganizationCreateWithoutCommitsInput, OrganizationUncheckedCreateWithoutCommitsInput>
+    where?: OrganizationWhereInput
+  }
+
+  export type OrganizationUpdateToOneWithWhereWithoutCommitsInput = {
+    where?: OrganizationWhereInput
+    data: XOR<OrganizationUpdateWithoutCommitsInput, OrganizationUncheckedUpdateWithoutCommitsInput>
+  }
+
+  export type OrganizationUpdateWithoutCommitsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    githubOrgId?: NullableStringFieldUpdateOperationsInput | string | null
+    discordGuildId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    members?: OrgMemberUpdateManyWithoutOrgNestedInput
+    repos?: RepositoryUpdateManyWithoutOrgNestedInput
+    developers?: DeveloperUpdateManyWithoutOrgNestedInput
+    sprints?: SprintUpdateManyWithoutOrgNestedInput
+    meetings?: MeetingUpdateManyWithoutOrgNestedInput
+    tasks?: TaskUpdateManyWithoutOrgNestedInput
+    embeddings?: EmbeddingUpdateManyWithoutOrgNestedInput
+    chatSessions?: ChatSessionUpdateManyWithoutOrgNestedInput
+    pullRequests?: PullRequestUpdateManyWithoutOrgNestedInput
+    chatMessages?: ChatMessageUpdateManyWithoutOrgNestedInput
+  }
+
+  export type OrganizationUncheckedUpdateWithoutCommitsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    githubOrgId?: NullableStringFieldUpdateOperationsInput | string | null
+    discordGuildId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    members?: OrgMemberUncheckedUpdateManyWithoutOrgNestedInput
+    repos?: RepositoryUncheckedUpdateManyWithoutOrgNestedInput
+    developers?: DeveloperUncheckedUpdateManyWithoutOrgNestedInput
+    sprints?: SprintUncheckedUpdateManyWithoutOrgNestedInput
+    meetings?: MeetingUncheckedUpdateManyWithoutOrgNestedInput
+    tasks?: TaskUncheckedUpdateManyWithoutOrgNestedInput
+    embeddings?: EmbeddingUncheckedUpdateManyWithoutOrgNestedInput
+    chatSessions?: ChatSessionUncheckedUpdateManyWithoutOrgNestedInput
+    pullRequests?: PullRequestUncheckedUpdateManyWithoutOrgNestedInput
+    chatMessages?: ChatMessageUncheckedUpdateManyWithoutOrgNestedInput
   }
 
   export type RepositoryUpsertWithoutCommitsInput = {
@@ -22328,6 +23054,51 @@ export namespace Prisma {
     taskAssignments?: TaskUncheckedUpdateManyWithoutAssigneeNestedInput
   }
 
+  export type OrganizationCreateWithoutPullRequestsInput = {
+    id?: string
+    name: string
+    slug: string
+    githubOrgId?: string | null
+    discordGuildId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    members?: OrgMemberCreateNestedManyWithoutOrgInput
+    repos?: RepositoryCreateNestedManyWithoutOrgInput
+    developers?: DeveloperCreateNestedManyWithoutOrgInput
+    sprints?: SprintCreateNestedManyWithoutOrgInput
+    meetings?: MeetingCreateNestedManyWithoutOrgInput
+    tasks?: TaskCreateNestedManyWithoutOrgInput
+    embeddings?: EmbeddingCreateNestedManyWithoutOrgInput
+    chatSessions?: ChatSessionCreateNestedManyWithoutOrgInput
+    commits?: CommitCreateNestedManyWithoutOrgInput
+    chatMessages?: ChatMessageCreateNestedManyWithoutOrgInput
+  }
+
+  export type OrganizationUncheckedCreateWithoutPullRequestsInput = {
+    id?: string
+    name: string
+    slug: string
+    githubOrgId?: string | null
+    discordGuildId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    members?: OrgMemberUncheckedCreateNestedManyWithoutOrgInput
+    repos?: RepositoryUncheckedCreateNestedManyWithoutOrgInput
+    developers?: DeveloperUncheckedCreateNestedManyWithoutOrgInput
+    sprints?: SprintUncheckedCreateNestedManyWithoutOrgInput
+    meetings?: MeetingUncheckedCreateNestedManyWithoutOrgInput
+    tasks?: TaskUncheckedCreateNestedManyWithoutOrgInput
+    embeddings?: EmbeddingUncheckedCreateNestedManyWithoutOrgInput
+    chatSessions?: ChatSessionUncheckedCreateNestedManyWithoutOrgInput
+    commits?: CommitUncheckedCreateNestedManyWithoutOrgInput
+    chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutOrgInput
+  }
+
+  export type OrganizationCreateOrConnectWithoutPullRequestsInput = {
+    where: OrganizationWhereUniqueInput
+    create: XOR<OrganizationCreateWithoutPullRequestsInput, OrganizationUncheckedCreateWithoutPullRequestsInput>
+  }
+
   export type RepositoryCreateWithoutPullRequestsInput = {
     id?: string
     githubId: number
@@ -22400,6 +23171,57 @@ export namespace Prisma {
   export type DeveloperCreateOrConnectWithoutPullRequestsInput = {
     where: DeveloperWhereUniqueInput
     create: XOR<DeveloperCreateWithoutPullRequestsInput, DeveloperUncheckedCreateWithoutPullRequestsInput>
+  }
+
+  export type OrganizationUpsertWithoutPullRequestsInput = {
+    update: XOR<OrganizationUpdateWithoutPullRequestsInput, OrganizationUncheckedUpdateWithoutPullRequestsInput>
+    create: XOR<OrganizationCreateWithoutPullRequestsInput, OrganizationUncheckedCreateWithoutPullRequestsInput>
+    where?: OrganizationWhereInput
+  }
+
+  export type OrganizationUpdateToOneWithWhereWithoutPullRequestsInput = {
+    where?: OrganizationWhereInput
+    data: XOR<OrganizationUpdateWithoutPullRequestsInput, OrganizationUncheckedUpdateWithoutPullRequestsInput>
+  }
+
+  export type OrganizationUpdateWithoutPullRequestsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    githubOrgId?: NullableStringFieldUpdateOperationsInput | string | null
+    discordGuildId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    members?: OrgMemberUpdateManyWithoutOrgNestedInput
+    repos?: RepositoryUpdateManyWithoutOrgNestedInput
+    developers?: DeveloperUpdateManyWithoutOrgNestedInput
+    sprints?: SprintUpdateManyWithoutOrgNestedInput
+    meetings?: MeetingUpdateManyWithoutOrgNestedInput
+    tasks?: TaskUpdateManyWithoutOrgNestedInput
+    embeddings?: EmbeddingUpdateManyWithoutOrgNestedInput
+    chatSessions?: ChatSessionUpdateManyWithoutOrgNestedInput
+    commits?: CommitUpdateManyWithoutOrgNestedInput
+    chatMessages?: ChatMessageUpdateManyWithoutOrgNestedInput
+  }
+
+  export type OrganizationUncheckedUpdateWithoutPullRequestsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    githubOrgId?: NullableStringFieldUpdateOperationsInput | string | null
+    discordGuildId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    members?: OrgMemberUncheckedUpdateManyWithoutOrgNestedInput
+    repos?: RepositoryUncheckedUpdateManyWithoutOrgNestedInput
+    developers?: DeveloperUncheckedUpdateManyWithoutOrgNestedInput
+    sprints?: SprintUncheckedUpdateManyWithoutOrgNestedInput
+    meetings?: MeetingUncheckedUpdateManyWithoutOrgNestedInput
+    tasks?: TaskUncheckedUpdateManyWithoutOrgNestedInput
+    embeddings?: EmbeddingUncheckedUpdateManyWithoutOrgNestedInput
+    chatSessions?: ChatSessionUncheckedUpdateManyWithoutOrgNestedInput
+    commits?: CommitUncheckedUpdateManyWithoutOrgNestedInput
+    chatMessages?: ChatMessageUncheckedUpdateManyWithoutOrgNestedInput
   }
 
   export type RepositoryUpsertWithoutPullRequestsInput = {
@@ -22503,6 +23325,9 @@ export namespace Prisma {
     tasks?: TaskCreateNestedManyWithoutOrgInput
     embeddings?: EmbeddingCreateNestedManyWithoutOrgInput
     chatSessions?: ChatSessionCreateNestedManyWithoutOrgInput
+    commits?: CommitCreateNestedManyWithoutOrgInput
+    pullRequests?: PullRequestCreateNestedManyWithoutOrgInput
+    chatMessages?: ChatMessageCreateNestedManyWithoutOrgInput
   }
 
   export type OrganizationUncheckedCreateWithoutMeetingsInput = {
@@ -22520,6 +23345,9 @@ export namespace Prisma {
     tasks?: TaskUncheckedCreateNestedManyWithoutOrgInput
     embeddings?: EmbeddingUncheckedCreateNestedManyWithoutOrgInput
     chatSessions?: ChatSessionUncheckedCreateNestedManyWithoutOrgInput
+    commits?: CommitUncheckedCreateNestedManyWithoutOrgInput
+    pullRequests?: PullRequestUncheckedCreateNestedManyWithoutOrgInput
+    chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutOrgInput
   }
 
   export type OrganizationCreateOrConnectWithoutMeetingsInput = {
@@ -22591,6 +23419,9 @@ export namespace Prisma {
     tasks?: TaskUpdateManyWithoutOrgNestedInput
     embeddings?: EmbeddingUpdateManyWithoutOrgNestedInput
     chatSessions?: ChatSessionUpdateManyWithoutOrgNestedInput
+    commits?: CommitUpdateManyWithoutOrgNestedInput
+    pullRequests?: PullRequestUpdateManyWithoutOrgNestedInput
+    chatMessages?: ChatMessageUpdateManyWithoutOrgNestedInput
   }
 
   export type OrganizationUncheckedUpdateWithoutMeetingsInput = {
@@ -22608,6 +23439,9 @@ export namespace Prisma {
     tasks?: TaskUncheckedUpdateManyWithoutOrgNestedInput
     embeddings?: EmbeddingUncheckedUpdateManyWithoutOrgNestedInput
     chatSessions?: ChatSessionUncheckedUpdateManyWithoutOrgNestedInput
+    commits?: CommitUncheckedUpdateManyWithoutOrgNestedInput
+    pullRequests?: PullRequestUncheckedUpdateManyWithoutOrgNestedInput
+    chatMessages?: ChatMessageUncheckedUpdateManyWithoutOrgNestedInput
   }
 
   export type TaskUpsertWithWhereUniqueWithoutMeetingInput = {
@@ -22641,6 +23475,9 @@ export namespace Prisma {
     meetings?: MeetingCreateNestedManyWithoutOrgInput
     embeddings?: EmbeddingCreateNestedManyWithoutOrgInput
     chatSessions?: ChatSessionCreateNestedManyWithoutOrgInput
+    commits?: CommitCreateNestedManyWithoutOrgInput
+    pullRequests?: PullRequestCreateNestedManyWithoutOrgInput
+    chatMessages?: ChatMessageCreateNestedManyWithoutOrgInput
   }
 
   export type OrganizationUncheckedCreateWithoutTasksInput = {
@@ -22658,6 +23495,9 @@ export namespace Prisma {
     meetings?: MeetingUncheckedCreateNestedManyWithoutOrgInput
     embeddings?: EmbeddingUncheckedCreateNestedManyWithoutOrgInput
     chatSessions?: ChatSessionUncheckedCreateNestedManyWithoutOrgInput
+    commits?: CommitUncheckedCreateNestedManyWithoutOrgInput
+    pullRequests?: PullRequestUncheckedCreateNestedManyWithoutOrgInput
+    chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutOrgInput
   }
 
   export type OrganizationCreateOrConnectWithoutTasksInput = {
@@ -22763,6 +23603,9 @@ export namespace Prisma {
     meetings?: MeetingUpdateManyWithoutOrgNestedInput
     embeddings?: EmbeddingUpdateManyWithoutOrgNestedInput
     chatSessions?: ChatSessionUpdateManyWithoutOrgNestedInput
+    commits?: CommitUpdateManyWithoutOrgNestedInput
+    pullRequests?: PullRequestUpdateManyWithoutOrgNestedInput
+    chatMessages?: ChatMessageUpdateManyWithoutOrgNestedInput
   }
 
   export type OrganizationUncheckedUpdateWithoutTasksInput = {
@@ -22780,6 +23623,9 @@ export namespace Prisma {
     meetings?: MeetingUncheckedUpdateManyWithoutOrgNestedInput
     embeddings?: EmbeddingUncheckedUpdateManyWithoutOrgNestedInput
     chatSessions?: ChatSessionUncheckedUpdateManyWithoutOrgNestedInput
+    commits?: CommitUncheckedUpdateManyWithoutOrgNestedInput
+    pullRequests?: PullRequestUncheckedUpdateManyWithoutOrgNestedInput
+    chatMessages?: ChatMessageUncheckedUpdateManyWithoutOrgNestedInput
   }
 
   export type MeetingUpsertWithoutTasksInput = {
@@ -22881,6 +23727,9 @@ export namespace Prisma {
     tasks?: TaskCreateNestedManyWithoutOrgInput
     embeddings?: EmbeddingCreateNestedManyWithoutOrgInput
     chatSessions?: ChatSessionCreateNestedManyWithoutOrgInput
+    commits?: CommitCreateNestedManyWithoutOrgInput
+    pullRequests?: PullRequestCreateNestedManyWithoutOrgInput
+    chatMessages?: ChatMessageCreateNestedManyWithoutOrgInput
   }
 
   export type OrganizationUncheckedCreateWithoutSprintsInput = {
@@ -22898,6 +23747,9 @@ export namespace Prisma {
     tasks?: TaskUncheckedCreateNestedManyWithoutOrgInput
     embeddings?: EmbeddingUncheckedCreateNestedManyWithoutOrgInput
     chatSessions?: ChatSessionUncheckedCreateNestedManyWithoutOrgInput
+    commits?: CommitUncheckedCreateNestedManyWithoutOrgInput
+    pullRequests?: PullRequestUncheckedCreateNestedManyWithoutOrgInput
+    chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutOrgInput
   }
 
   export type OrganizationCreateOrConnectWithoutSprintsInput = {
@@ -22931,6 +23783,9 @@ export namespace Prisma {
     tasks?: TaskUpdateManyWithoutOrgNestedInput
     embeddings?: EmbeddingUpdateManyWithoutOrgNestedInput
     chatSessions?: ChatSessionUpdateManyWithoutOrgNestedInput
+    commits?: CommitUpdateManyWithoutOrgNestedInput
+    pullRequests?: PullRequestUpdateManyWithoutOrgNestedInput
+    chatMessages?: ChatMessageUpdateManyWithoutOrgNestedInput
   }
 
   export type OrganizationUncheckedUpdateWithoutSprintsInput = {
@@ -22948,6 +23803,9 @@ export namespace Prisma {
     tasks?: TaskUncheckedUpdateManyWithoutOrgNestedInput
     embeddings?: EmbeddingUncheckedUpdateManyWithoutOrgNestedInput
     chatSessions?: ChatSessionUncheckedUpdateManyWithoutOrgNestedInput
+    commits?: CommitUncheckedUpdateManyWithoutOrgNestedInput
+    pullRequests?: PullRequestUncheckedUpdateManyWithoutOrgNestedInput
+    chatMessages?: ChatMessageUncheckedUpdateManyWithoutOrgNestedInput
   }
 
   export type OrganizationCreateWithoutEmbeddingsInput = {
@@ -22965,6 +23823,9 @@ export namespace Prisma {
     meetings?: MeetingCreateNestedManyWithoutOrgInput
     tasks?: TaskCreateNestedManyWithoutOrgInput
     chatSessions?: ChatSessionCreateNestedManyWithoutOrgInput
+    commits?: CommitCreateNestedManyWithoutOrgInput
+    pullRequests?: PullRequestCreateNestedManyWithoutOrgInput
+    chatMessages?: ChatMessageCreateNestedManyWithoutOrgInput
   }
 
   export type OrganizationUncheckedCreateWithoutEmbeddingsInput = {
@@ -22982,6 +23843,9 @@ export namespace Prisma {
     meetings?: MeetingUncheckedCreateNestedManyWithoutOrgInput
     tasks?: TaskUncheckedCreateNestedManyWithoutOrgInput
     chatSessions?: ChatSessionUncheckedCreateNestedManyWithoutOrgInput
+    commits?: CommitUncheckedCreateNestedManyWithoutOrgInput
+    pullRequests?: PullRequestUncheckedCreateNestedManyWithoutOrgInput
+    chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutOrgInput
   }
 
   export type OrganizationCreateOrConnectWithoutEmbeddingsInput = {
@@ -23050,6 +23914,9 @@ export namespace Prisma {
     meetings?: MeetingUpdateManyWithoutOrgNestedInput
     tasks?: TaskUpdateManyWithoutOrgNestedInput
     chatSessions?: ChatSessionUpdateManyWithoutOrgNestedInput
+    commits?: CommitUpdateManyWithoutOrgNestedInput
+    pullRequests?: PullRequestUpdateManyWithoutOrgNestedInput
+    chatMessages?: ChatMessageUpdateManyWithoutOrgNestedInput
   }
 
   export type OrganizationUncheckedUpdateWithoutEmbeddingsInput = {
@@ -23067,6 +23934,9 @@ export namespace Prisma {
     meetings?: MeetingUncheckedUpdateManyWithoutOrgNestedInput
     tasks?: TaskUncheckedUpdateManyWithoutOrgNestedInput
     chatSessions?: ChatSessionUncheckedUpdateManyWithoutOrgNestedInput
+    commits?: CommitUncheckedUpdateManyWithoutOrgNestedInput
+    pullRequests?: PullRequestUncheckedUpdateManyWithoutOrgNestedInput
+    chatMessages?: ChatMessageUncheckedUpdateManyWithoutOrgNestedInput
   }
 
   export type RepositoryUpsertWithoutEmbeddingsInput = {
@@ -23125,6 +23995,9 @@ export namespace Prisma {
     meetings?: MeetingCreateNestedManyWithoutOrgInput
     tasks?: TaskCreateNestedManyWithoutOrgInput
     embeddings?: EmbeddingCreateNestedManyWithoutOrgInput
+    commits?: CommitCreateNestedManyWithoutOrgInput
+    pullRequests?: PullRequestCreateNestedManyWithoutOrgInput
+    chatMessages?: ChatMessageCreateNestedManyWithoutOrgInput
   }
 
   export type OrganizationUncheckedCreateWithoutChatSessionsInput = {
@@ -23142,6 +24015,9 @@ export namespace Prisma {
     meetings?: MeetingUncheckedCreateNestedManyWithoutOrgInput
     tasks?: TaskUncheckedCreateNestedManyWithoutOrgInput
     embeddings?: EmbeddingUncheckedCreateNestedManyWithoutOrgInput
+    commits?: CommitUncheckedCreateNestedManyWithoutOrgInput
+    pullRequests?: PullRequestUncheckedCreateNestedManyWithoutOrgInput
+    chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutOrgInput
   }
 
   export type OrganizationCreateOrConnectWithoutChatSessionsInput = {
@@ -23155,10 +24031,12 @@ export namespace Prisma {
     content: string
     sources?: JsonNullValueInput | InputJsonValue
     createdAt?: Date | string
+    org: OrganizationCreateNestedOneWithoutChatMessagesInput
   }
 
   export type ChatMessageUncheckedCreateWithoutSessionInput = {
     id?: string
+    orgId: string
     role: string
     content: string
     sources?: JsonNullValueInput | InputJsonValue
@@ -23201,6 +24079,9 @@ export namespace Prisma {
     meetings?: MeetingUpdateManyWithoutOrgNestedInput
     tasks?: TaskUpdateManyWithoutOrgNestedInput
     embeddings?: EmbeddingUpdateManyWithoutOrgNestedInput
+    commits?: CommitUpdateManyWithoutOrgNestedInput
+    pullRequests?: PullRequestUpdateManyWithoutOrgNestedInput
+    chatMessages?: ChatMessageUpdateManyWithoutOrgNestedInput
   }
 
   export type OrganizationUncheckedUpdateWithoutChatSessionsInput = {
@@ -23218,6 +24099,9 @@ export namespace Prisma {
     meetings?: MeetingUncheckedUpdateManyWithoutOrgNestedInput
     tasks?: TaskUncheckedUpdateManyWithoutOrgNestedInput
     embeddings?: EmbeddingUncheckedUpdateManyWithoutOrgNestedInput
+    commits?: CommitUncheckedUpdateManyWithoutOrgNestedInput
+    pullRequests?: PullRequestUncheckedUpdateManyWithoutOrgNestedInput
+    chatMessages?: ChatMessageUncheckedUpdateManyWithoutOrgNestedInput
   }
 
   export type ChatMessageUpsertWithWhereUniqueWithoutSessionInput = {
@@ -23234,18 +24118,6 @@ export namespace Prisma {
   export type ChatMessageUpdateManyWithWhereWithoutSessionInput = {
     where: ChatMessageScalarWhereInput
     data: XOR<ChatMessageUpdateManyMutationInput, ChatMessageUncheckedUpdateManyWithoutSessionInput>
-  }
-
-  export type ChatMessageScalarWhereInput = {
-    AND?: ChatMessageScalarWhereInput | ChatMessageScalarWhereInput[]
-    OR?: ChatMessageScalarWhereInput[]
-    NOT?: ChatMessageScalarWhereInput | ChatMessageScalarWhereInput[]
-    id?: StringFilter<"ChatMessage"> | string
-    sessionId?: StringFilter<"ChatMessage"> | string
-    role?: StringFilter<"ChatMessage"> | string
-    content?: StringFilter<"ChatMessage"> | string
-    sources?: JsonFilter<"ChatMessage">
-    createdAt?: DateTimeFilter<"ChatMessage"> | Date | string
   }
 
   export type ChatSessionCreateWithoutMessagesInput = {
@@ -23267,6 +24139,51 @@ export namespace Prisma {
   export type ChatSessionCreateOrConnectWithoutMessagesInput = {
     where: ChatSessionWhereUniqueInput
     create: XOR<ChatSessionCreateWithoutMessagesInput, ChatSessionUncheckedCreateWithoutMessagesInput>
+  }
+
+  export type OrganizationCreateWithoutChatMessagesInput = {
+    id?: string
+    name: string
+    slug: string
+    githubOrgId?: string | null
+    discordGuildId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    members?: OrgMemberCreateNestedManyWithoutOrgInput
+    repos?: RepositoryCreateNestedManyWithoutOrgInput
+    developers?: DeveloperCreateNestedManyWithoutOrgInput
+    sprints?: SprintCreateNestedManyWithoutOrgInput
+    meetings?: MeetingCreateNestedManyWithoutOrgInput
+    tasks?: TaskCreateNestedManyWithoutOrgInput
+    embeddings?: EmbeddingCreateNestedManyWithoutOrgInput
+    chatSessions?: ChatSessionCreateNestedManyWithoutOrgInput
+    commits?: CommitCreateNestedManyWithoutOrgInput
+    pullRequests?: PullRequestCreateNestedManyWithoutOrgInput
+  }
+
+  export type OrganizationUncheckedCreateWithoutChatMessagesInput = {
+    id?: string
+    name: string
+    slug: string
+    githubOrgId?: string | null
+    discordGuildId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    members?: OrgMemberUncheckedCreateNestedManyWithoutOrgInput
+    repos?: RepositoryUncheckedCreateNestedManyWithoutOrgInput
+    developers?: DeveloperUncheckedCreateNestedManyWithoutOrgInput
+    sprints?: SprintUncheckedCreateNestedManyWithoutOrgInput
+    meetings?: MeetingUncheckedCreateNestedManyWithoutOrgInput
+    tasks?: TaskUncheckedCreateNestedManyWithoutOrgInput
+    embeddings?: EmbeddingUncheckedCreateNestedManyWithoutOrgInput
+    chatSessions?: ChatSessionUncheckedCreateNestedManyWithoutOrgInput
+    commits?: CommitUncheckedCreateNestedManyWithoutOrgInput
+    pullRequests?: PullRequestUncheckedCreateNestedManyWithoutOrgInput
+  }
+
+  export type OrganizationCreateOrConnectWithoutChatMessagesInput = {
+    where: OrganizationWhereUniqueInput
+    create: XOR<OrganizationCreateWithoutChatMessagesInput, OrganizationUncheckedCreateWithoutChatMessagesInput>
   }
 
   export type ChatSessionUpsertWithoutMessagesInput = {
@@ -23294,6 +24211,57 @@ export namespace Prisma {
     orgId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OrganizationUpsertWithoutChatMessagesInput = {
+    update: XOR<OrganizationUpdateWithoutChatMessagesInput, OrganizationUncheckedUpdateWithoutChatMessagesInput>
+    create: XOR<OrganizationCreateWithoutChatMessagesInput, OrganizationUncheckedCreateWithoutChatMessagesInput>
+    where?: OrganizationWhereInput
+  }
+
+  export type OrganizationUpdateToOneWithWhereWithoutChatMessagesInput = {
+    where?: OrganizationWhereInput
+    data: XOR<OrganizationUpdateWithoutChatMessagesInput, OrganizationUncheckedUpdateWithoutChatMessagesInput>
+  }
+
+  export type OrganizationUpdateWithoutChatMessagesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    githubOrgId?: NullableStringFieldUpdateOperationsInput | string | null
+    discordGuildId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    members?: OrgMemberUpdateManyWithoutOrgNestedInput
+    repos?: RepositoryUpdateManyWithoutOrgNestedInput
+    developers?: DeveloperUpdateManyWithoutOrgNestedInput
+    sprints?: SprintUpdateManyWithoutOrgNestedInput
+    meetings?: MeetingUpdateManyWithoutOrgNestedInput
+    tasks?: TaskUpdateManyWithoutOrgNestedInput
+    embeddings?: EmbeddingUpdateManyWithoutOrgNestedInput
+    chatSessions?: ChatSessionUpdateManyWithoutOrgNestedInput
+    commits?: CommitUpdateManyWithoutOrgNestedInput
+    pullRequests?: PullRequestUpdateManyWithoutOrgNestedInput
+  }
+
+  export type OrganizationUncheckedUpdateWithoutChatMessagesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    githubOrgId?: NullableStringFieldUpdateOperationsInput | string | null
+    discordGuildId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    members?: OrgMemberUncheckedUpdateManyWithoutOrgNestedInput
+    repos?: RepositoryUncheckedUpdateManyWithoutOrgNestedInput
+    developers?: DeveloperUncheckedUpdateManyWithoutOrgNestedInput
+    sprints?: SprintUncheckedUpdateManyWithoutOrgNestedInput
+    meetings?: MeetingUncheckedUpdateManyWithoutOrgNestedInput
+    tasks?: TaskUncheckedUpdateManyWithoutOrgNestedInput
+    embeddings?: EmbeddingUncheckedUpdateManyWithoutOrgNestedInput
+    chatSessions?: ChatSessionUncheckedUpdateManyWithoutOrgNestedInput
+    commits?: CommitUncheckedUpdateManyWithoutOrgNestedInput
+    pullRequests?: PullRequestUncheckedUpdateManyWithoutOrgNestedInput
   }
 
   export type OrgMemberCreateManyOrgInput = {
@@ -23381,6 +24349,44 @@ export namespace Prisma {
     userId: string
     createdAt?: Date | string
     updatedAt?: Date | string
+  }
+
+  export type CommitCreateManyOrgInput = {
+    id?: string
+    repoId: string
+    developerId: string
+    sha: string
+    message: string
+    additions?: number
+    deletions?: number
+    filesChanged?: number
+    committedAt: Date | string
+  }
+
+  export type PullRequestCreateManyOrgInput = {
+    id?: string
+    repoId: string
+    authorId: string
+    githubId: number
+    number: number
+    title: string
+    body?: string | null
+    state?: $Enums.PRState
+    reviewCycles?: number
+    additions?: number
+    deletions?: number
+    mergedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ChatMessageCreateManyOrgInput = {
+    id?: string
+    sessionId: string
+    role: string
+    content: string
+    sources?: JsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
   }
 
   export type OrgMemberUpdateWithoutOrgInput = {
@@ -23660,8 +24666,123 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type CommitUpdateWithoutOrgInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sha?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    additions?: IntFieldUpdateOperationsInput | number
+    deletions?: IntFieldUpdateOperationsInput | number
+    filesChanged?: IntFieldUpdateOperationsInput | number
+    committedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    repo?: RepositoryUpdateOneRequiredWithoutCommitsNestedInput
+    developer?: DeveloperUpdateOneRequiredWithoutCommitsNestedInput
+  }
+
+  export type CommitUncheckedUpdateWithoutOrgInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    repoId?: StringFieldUpdateOperationsInput | string
+    developerId?: StringFieldUpdateOperationsInput | string
+    sha?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    additions?: IntFieldUpdateOperationsInput | number
+    deletions?: IntFieldUpdateOperationsInput | number
+    filesChanged?: IntFieldUpdateOperationsInput | number
+    committedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommitUncheckedUpdateManyWithoutOrgInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    repoId?: StringFieldUpdateOperationsInput | string
+    developerId?: StringFieldUpdateOperationsInput | string
+    sha?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    additions?: IntFieldUpdateOperationsInput | number
+    deletions?: IntFieldUpdateOperationsInput | number
+    filesChanged?: IntFieldUpdateOperationsInput | number
+    committedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PullRequestUpdateWithoutOrgInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    githubId?: IntFieldUpdateOperationsInput | number
+    number?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    body?: NullableStringFieldUpdateOperationsInput | string | null
+    state?: EnumPRStateFieldUpdateOperationsInput | $Enums.PRState
+    reviewCycles?: IntFieldUpdateOperationsInput | number
+    additions?: IntFieldUpdateOperationsInput | number
+    deletions?: IntFieldUpdateOperationsInput | number
+    mergedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    repo?: RepositoryUpdateOneRequiredWithoutPullRequestsNestedInput
+    author?: DeveloperUpdateOneRequiredWithoutPullRequestsNestedInput
+  }
+
+  export type PullRequestUncheckedUpdateWithoutOrgInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    repoId?: StringFieldUpdateOperationsInput | string
+    authorId?: StringFieldUpdateOperationsInput | string
+    githubId?: IntFieldUpdateOperationsInput | number
+    number?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    body?: NullableStringFieldUpdateOperationsInput | string | null
+    state?: EnumPRStateFieldUpdateOperationsInput | $Enums.PRState
+    reviewCycles?: IntFieldUpdateOperationsInput | number
+    additions?: IntFieldUpdateOperationsInput | number
+    deletions?: IntFieldUpdateOperationsInput | number
+    mergedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PullRequestUncheckedUpdateManyWithoutOrgInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    repoId?: StringFieldUpdateOperationsInput | string
+    authorId?: StringFieldUpdateOperationsInput | string
+    githubId?: IntFieldUpdateOperationsInput | number
+    number?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    body?: NullableStringFieldUpdateOperationsInput | string | null
+    state?: EnumPRStateFieldUpdateOperationsInput | $Enums.PRState
+    reviewCycles?: IntFieldUpdateOperationsInput | number
+    additions?: IntFieldUpdateOperationsInput | number
+    deletions?: IntFieldUpdateOperationsInput | number
+    mergedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChatMessageUpdateWithoutOrgInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    sources?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    session?: ChatSessionUpdateOneRequiredWithoutMessagesNestedInput
+  }
+
+  export type ChatMessageUncheckedUpdateWithoutOrgInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionId?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    sources?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChatMessageUncheckedUpdateManyWithoutOrgInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    sessionId?: StringFieldUpdateOperationsInput | string
+    role?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    sources?: JsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type CommitCreateManyRepoInput = {
     id?: string
+    orgId: string
     developerId: string
     sha: string
     message: string
@@ -23673,6 +24794,7 @@ export namespace Prisma {
 
   export type PullRequestCreateManyRepoInput = {
     id?: string
+    orgId: string
     authorId: string
     githubId: number
     number: number
@@ -23705,11 +24827,13 @@ export namespace Prisma {
     deletions?: IntFieldUpdateOperationsInput | number
     filesChanged?: IntFieldUpdateOperationsInput | number
     committedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    org?: OrganizationUpdateOneRequiredWithoutCommitsNestedInput
     developer?: DeveloperUpdateOneRequiredWithoutCommitsNestedInput
   }
 
   export type CommitUncheckedUpdateWithoutRepoInput = {
     id?: StringFieldUpdateOperationsInput | string
+    orgId?: StringFieldUpdateOperationsInput | string
     developerId?: StringFieldUpdateOperationsInput | string
     sha?: StringFieldUpdateOperationsInput | string
     message?: StringFieldUpdateOperationsInput | string
@@ -23721,6 +24845,7 @@ export namespace Prisma {
 
   export type CommitUncheckedUpdateManyWithoutRepoInput = {
     id?: StringFieldUpdateOperationsInput | string
+    orgId?: StringFieldUpdateOperationsInput | string
     developerId?: StringFieldUpdateOperationsInput | string
     sha?: StringFieldUpdateOperationsInput | string
     message?: StringFieldUpdateOperationsInput | string
@@ -23743,11 +24868,13 @@ export namespace Prisma {
     mergedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    org?: OrganizationUpdateOneRequiredWithoutPullRequestsNestedInput
     author?: DeveloperUpdateOneRequiredWithoutPullRequestsNestedInput
   }
 
   export type PullRequestUncheckedUpdateWithoutRepoInput = {
     id?: StringFieldUpdateOperationsInput | string
+    orgId?: StringFieldUpdateOperationsInput | string
     authorId?: StringFieldUpdateOperationsInput | string
     githubId?: IntFieldUpdateOperationsInput | number
     number?: IntFieldUpdateOperationsInput | number
@@ -23764,6 +24891,7 @@ export namespace Prisma {
 
   export type PullRequestUncheckedUpdateManyWithoutRepoInput = {
     id?: StringFieldUpdateOperationsInput | string
+    orgId?: StringFieldUpdateOperationsInput | string
     authorId?: StringFieldUpdateOperationsInput | string
     githubId?: IntFieldUpdateOperationsInput | number
     number?: IntFieldUpdateOperationsInput | number
@@ -23810,6 +24938,7 @@ export namespace Prisma {
 
   export type CommitCreateManyDeveloperInput = {
     id?: string
+    orgId: string
     repoId: string
     sha: string
     message: string
@@ -23821,6 +24950,7 @@ export namespace Prisma {
 
   export type PullRequestCreateManyAuthorInput = {
     id?: string
+    orgId: string
     repoId: string
     githubId: number
     number: number
@@ -23857,11 +24987,13 @@ export namespace Prisma {
     deletions?: IntFieldUpdateOperationsInput | number
     filesChanged?: IntFieldUpdateOperationsInput | number
     committedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    org?: OrganizationUpdateOneRequiredWithoutCommitsNestedInput
     repo?: RepositoryUpdateOneRequiredWithoutCommitsNestedInput
   }
 
   export type CommitUncheckedUpdateWithoutDeveloperInput = {
     id?: StringFieldUpdateOperationsInput | string
+    orgId?: StringFieldUpdateOperationsInput | string
     repoId?: StringFieldUpdateOperationsInput | string
     sha?: StringFieldUpdateOperationsInput | string
     message?: StringFieldUpdateOperationsInput | string
@@ -23873,6 +25005,7 @@ export namespace Prisma {
 
   export type CommitUncheckedUpdateManyWithoutDeveloperInput = {
     id?: StringFieldUpdateOperationsInput | string
+    orgId?: StringFieldUpdateOperationsInput | string
     repoId?: StringFieldUpdateOperationsInput | string
     sha?: StringFieldUpdateOperationsInput | string
     message?: StringFieldUpdateOperationsInput | string
@@ -23895,11 +25028,13 @@ export namespace Prisma {
     mergedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    org?: OrganizationUpdateOneRequiredWithoutPullRequestsNestedInput
     repo?: RepositoryUpdateOneRequiredWithoutPullRequestsNestedInput
   }
 
   export type PullRequestUncheckedUpdateWithoutAuthorInput = {
     id?: StringFieldUpdateOperationsInput | string
+    orgId?: StringFieldUpdateOperationsInput | string
     repoId?: StringFieldUpdateOperationsInput | string
     githubId?: IntFieldUpdateOperationsInput | number
     number?: IntFieldUpdateOperationsInput | number
@@ -23916,6 +25051,7 @@ export namespace Prisma {
 
   export type PullRequestUncheckedUpdateManyWithoutAuthorInput = {
     id?: StringFieldUpdateOperationsInput | string
+    orgId?: StringFieldUpdateOperationsInput | string
     repoId?: StringFieldUpdateOperationsInput | string
     githubId?: IntFieldUpdateOperationsInput | number
     number?: IntFieldUpdateOperationsInput | number
@@ -24030,6 +25166,7 @@ export namespace Prisma {
 
   export type ChatMessageCreateManySessionInput = {
     id?: string
+    orgId: string
     role: string
     content: string
     sources?: JsonNullValueInput | InputJsonValue
@@ -24042,10 +25179,12 @@ export namespace Prisma {
     content?: StringFieldUpdateOperationsInput | string
     sources?: JsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    org?: OrganizationUpdateOneRequiredWithoutChatMessagesNestedInput
   }
 
   export type ChatMessageUncheckedUpdateWithoutSessionInput = {
     id?: StringFieldUpdateOperationsInput | string
+    orgId?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     sources?: JsonNullValueInput | InputJsonValue
@@ -24054,6 +25193,7 @@ export namespace Prisma {
 
   export type ChatMessageUncheckedUpdateManyWithoutSessionInput = {
     id?: StringFieldUpdateOperationsInput | string
+    orgId?: StringFieldUpdateOperationsInput | string
     role?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     sources?: JsonNullValueInput | InputJsonValue
