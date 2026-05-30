@@ -50,3 +50,4 @@ e2e-results/
 # Misc
 tmp/
 .claude/*.lock
+*.tsbuildinfo
