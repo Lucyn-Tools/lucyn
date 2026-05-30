@@ -10,28 +10,28 @@ DO $$ BEGIN
   END IF;
 END $$;
 
--- Add orgId to Commit for direct tenant scoping.
--- For a DB with existing rows, backfill orgId via the repo relation before applying:
---   UPDATE "Commit" c SET "orgId" = r."orgId" FROM "Repository" r WHERE c."repoId" = r.id;
-ALTER TABLE "Commit" ADD COLUMN "orgId" TEXT NOT NULL;
+-- Add orgId to Commit (three-step: nullable → backfill → NOT NULL + FK + index)
+ALTER TABLE "Commit" ADD COLUMN "orgId" TEXT;
+UPDATE "Commit" c SET "orgId" = r."orgId" FROM "Repository" r WHERE c."repoId" = r.id;
+ALTER TABLE "Commit" ALTER COLUMN "orgId" SET NOT NULL;
 ALTER TABLE "Commit" ADD CONSTRAINT "Commit_orgId_fkey"
   FOREIGN KEY ("orgId") REFERENCES "Organization"("id")
   ON DELETE RESTRICT ON UPDATE CASCADE;
 CREATE INDEX "Commit_orgId_idx" ON "Commit"("orgId");
 
--- Add orgId to PullRequest for direct tenant scoping.
--- For a DB with existing rows, backfill via the repo relation before applying:
---   UPDATE "PullRequest" pr SET "orgId" = r."orgId" FROM "Repository" r WHERE pr."repoId" = r.id;
-ALTER TABLE "PullRequest" ADD COLUMN "orgId" TEXT NOT NULL;
+-- Add orgId to PullRequest (three-step: nullable → backfill → NOT NULL + FK + index)
+ALTER TABLE "PullRequest" ADD COLUMN "orgId" TEXT;
+UPDATE "PullRequest" pr SET "orgId" = r."orgId" FROM "Repository" r WHERE pr."repoId" = r.id;
+ALTER TABLE "PullRequest" ALTER COLUMN "orgId" SET NOT NULL;
 ALTER TABLE "PullRequest" ADD CONSTRAINT "PullRequest_orgId_fkey"
   FOREIGN KEY ("orgId") REFERENCES "Organization"("id")
   ON DELETE RESTRICT ON UPDATE CASCADE;
 CREATE INDEX "PullRequest_orgId_idx" ON "PullRequest"("orgId");
 
--- Add orgId to ChatMessage for direct tenant scoping.
--- For a DB with existing rows, backfill via the session relation before applying:
---   UPDATE "ChatMessage" m SET "orgId" = s."orgId" FROM "ChatSession" s WHERE m."sessionId" = s.id;
-ALTER TABLE "ChatMessage" ADD COLUMN "orgId" TEXT NOT NULL;
+-- Add orgId to ChatMessage (three-step: nullable → backfill → NOT NULL + FK + index)
+ALTER TABLE "ChatMessage" ADD COLUMN "orgId" TEXT;
+UPDATE "ChatMessage" m SET "orgId" = s."orgId" FROM "ChatSession" s WHERE m."sessionId" = s.id;
+ALTER TABLE "ChatMessage" ALTER COLUMN "orgId" SET NOT NULL;
 ALTER TABLE "ChatMessage" ADD CONSTRAINT "ChatMessage_orgId_fkey"
   FOREIGN KEY ("orgId") REFERENCES "Organization"("id")
   ON DELETE RESTRICT ON UPDATE CASCADE;
