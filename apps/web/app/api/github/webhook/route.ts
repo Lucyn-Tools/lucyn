@@ -139,6 +139,7 @@ async function handlePullRequest(body: PullRequestEvent): Promise<void> {
       : "OPEN";
 
   await ingestPullRequest(
+    dbRepo.orgId,
     dbRepo.id,
     authorId,
     pr.id,

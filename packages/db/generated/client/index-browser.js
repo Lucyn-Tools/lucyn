@@ -167,6 +167,7 @@ exports.Prisma.DeveloperScalarFieldEnum = {
 
 exports.Prisma.CommitScalarFieldEnum = {
   id: 'id',
+  orgId: 'orgId',
   repoId: 'repoId',
   developerId: 'developerId',
   sha: 'sha',
@@ -179,6 +180,7 @@ exports.Prisma.CommitScalarFieldEnum = {
 
 exports.Prisma.PullRequestScalarFieldEnum = {
   id: 'id',
+  orgId: 'orgId',
   repoId: 'repoId',
   authorId: 'authorId',
   githubId: 'githubId',
@@ -257,6 +259,7 @@ exports.Prisma.ChatSessionScalarFieldEnum = {
 exports.Prisma.ChatMessageScalarFieldEnum = {
   id: 'id',
   sessionId: 'sessionId',
+  orgId: 'orgId',
   role: 'role',
   content: 'content',
   sources: 'sources',
