@@ -159,6 +159,9 @@ exports.Prisma.DeveloperScalarFieldEnum = {
   avatarUrl: 'avatarUrl',
   discordUserId: 'discordUserId',
   strengths: 'strengths',
+  knowledgeAreas: 'knowledgeAreas',
+  focusArea: 'focusArea',
+  lastProfiledAt: 'lastProfiledAt',
   currentLoad: 'currentLoad',
   burnoutSignal: 'burnoutSignal',
   createdAt: 'createdAt',
@@ -269,6 +272,11 @@ exports.Prisma.ChatMessageScalarFieldEnum = {
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.NullableJsonNullValueInput = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull
 };
 
 exports.Prisma.JsonNullValueInput = {
