@@ -230,6 +230,7 @@ model Embedding {
   org  Organization @relation(fields: [orgId], references: [id])
   repo Repository?  @relation(fields: [repoId], references: [id])
 
+  @@unique([orgId, sourceType, sourceId])
   @@index([orgId, sourceType])
 }
 

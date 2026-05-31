@@ -17782,6 +17782,7 @@ export namespace Prisma {
 
   export type EmbeddingWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    orgId_sourceType_sourceId?: EmbeddingOrgIdSourceTypeSourceIdCompoundUniqueInput
     AND?: EmbeddingWhereInput | EmbeddingWhereInput[]
     OR?: EmbeddingWhereInput[]
     NOT?: EmbeddingWhereInput | EmbeddingWhereInput[]
@@ -17794,7 +17795,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Embedding"> | Date | string
     org?: XOR<OrganizationScalarRelationFilter, OrganizationWhereInput>
     repo?: XOR<RepositoryNullableScalarRelationFilter, RepositoryWhereInput> | null
-  }, "id">
+  }, "id" | "orgId_sourceType_sourceId">
 
   export type EmbeddingOrderByWithAggregationInput = {
     id?: SortOrder
@@ -19986,6 +19987,12 @@ export namespace Prisma {
   export type RepositoryNullableScalarRelationFilter = {
     is?: RepositoryWhereInput | null
     isNot?: RepositoryWhereInput | null
+  }
+
+  export type EmbeddingOrgIdSourceTypeSourceIdCompoundUniqueInput = {
+    orgId: string
+    sourceType: $Enums.EmbeddingSource
+    sourceId: string
   }
 
   export type EmbeddingCountOrderByAggregateInput = {

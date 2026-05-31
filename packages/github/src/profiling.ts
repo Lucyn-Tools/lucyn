@@ -233,8 +233,8 @@ export async function updateDeveloperProfile(
   const lookbackStart = new Date(Date.now() - 90 * 24 * 60 * 60 * 1000);
 
   const [developer, commits, prs] = await Promise.all([
-    prisma.developer.findUnique({
-      where: { id: developerId },
+    prisma.developer.findFirst({
+      where: { id: developerId, orgId },
       select: { githubLogin: true, name: true },
     }),
     prisma.commit.findMany({
@@ -275,8 +275,8 @@ export async function updateDeveloperProfile(
     burnoutInputs.totalCommits
   );
 
-  await prisma.developer.update({
-    where: { id: developerId },
+  await prisma.developer.updateMany({
+    where: { id: developerId, orgId },
     data: {
       strengths,
       knowledgeAreas,
@@ -297,23 +297,18 @@ export async function updateDeveloperProfile(
     currentLoad
   );
 
-  const existing = await prisma.embedding.findFirst({
-    where: { orgId, sourceType: "DEVELOPER_SUMMARY", sourceId: developerId },
-    select: { id: true },
-  });
-
   const embeddingData = {
     content: summaryContent,
     metadata: { knowledgeAreas, workStyles, currentLoad, focusArea } as object,
   };
 
-  if (existing) {
-    await prisma.embedding.update({ where: { id: existing.id }, data: embeddingData });
-  } else {
-    await prisma.embedding.create({
-      data: { orgId, sourceType: "DEVELOPER_SUMMARY", sourceId: developerId, ...embeddingData },
-    });
-  }
+  await prisma.embedding.upsert({
+    where: {
+      orgId_sourceType_sourceId: { orgId, sourceType: "DEVELOPER_SUMMARY", sourceId: developerId },
+    },
+    update: embeddingData,
+    create: { orgId, sourceType: "DEVELOPER_SUMMARY", sourceId: developerId, ...embeddingData },
+  });
 }
 
 // ─── BULK UPDATE ─────────────────────────────────────────────────────────────
@@ -324,6 +319,8 @@ export async function updateAllDeveloperProfiles(orgId: string): Promise<number>
     select: { id: true },
   });
 
-  await Promise.all(developers.map((dev) => updateDeveloperProfile(orgId, dev.id)));
-  return developers.length;
+  const results = await Promise.allSettled(
+    developers.map((dev) => updateDeveloperProfile(orgId, dev.id))
+  );
+  return results.filter((r) => r.status === "fulfilled").length;
 }
