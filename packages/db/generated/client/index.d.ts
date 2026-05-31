@@ -5936,6 +5936,8 @@ export namespace Prisma {
     name: string | null
     avatarUrl: string | null
     discordUserId: string | null
+    focusArea: string | null
+    lastProfiledAt: Date | null
     currentLoad: number | null
     burnoutSignal: number | null
     createdAt: Date | null
@@ -5950,6 +5952,8 @@ export namespace Prisma {
     name: string | null
     avatarUrl: string | null
     discordUserId: string | null
+    focusArea: string | null
+    lastProfiledAt: Date | null
     currentLoad: number | null
     burnoutSignal: number | null
     createdAt: Date | null
@@ -5965,6 +5969,9 @@ export namespace Prisma {
     avatarUrl: number
     discordUserId: number
     strengths: number
+    knowledgeAreas: number
+    focusArea: number
+    lastProfiledAt: number
     currentLoad: number
     burnoutSignal: number
     createdAt: number
@@ -5993,6 +6000,8 @@ export namespace Prisma {
     name?: true
     avatarUrl?: true
     discordUserId?: true
+    focusArea?: true
+    lastProfiledAt?: true
     currentLoad?: true
     burnoutSignal?: true
     createdAt?: true
@@ -6007,6 +6016,8 @@ export namespace Prisma {
     name?: true
     avatarUrl?: true
     discordUserId?: true
+    focusArea?: true
+    lastProfiledAt?: true
     currentLoad?: true
     burnoutSignal?: true
     createdAt?: true
@@ -6022,6 +6033,9 @@ export namespace Prisma {
     avatarUrl?: true
     discordUserId?: true
     strengths?: true
+    knowledgeAreas?: true
+    focusArea?: true
+    lastProfiledAt?: true
     currentLoad?: true
     burnoutSignal?: true
     createdAt?: true
@@ -6124,6 +6138,9 @@ export namespace Prisma {
     avatarUrl: string | null
     discordUserId: string | null
     strengths: string[]
+    knowledgeAreas: JsonValue | null
+    focusArea: string | null
+    lastProfiledAt: Date | null
     currentLoad: number
     burnoutSignal: number
     createdAt: Date
@@ -6158,6 +6175,9 @@ export namespace Prisma {
     avatarUrl?: boolean
     discordUserId?: boolean
     strengths?: boolean
+    knowledgeAreas?: boolean
+    focusArea?: boolean
+    lastProfiledAt?: boolean
     currentLoad?: boolean
     burnoutSignal?: boolean
     createdAt?: boolean
@@ -6178,6 +6198,9 @@ export namespace Prisma {
     avatarUrl?: boolean
     discordUserId?: boolean
     strengths?: boolean
+    knowledgeAreas?: boolean
+    focusArea?: boolean
+    lastProfiledAt?: boolean
     currentLoad?: boolean
     burnoutSignal?: boolean
     createdAt?: boolean
@@ -6194,6 +6217,9 @@ export namespace Prisma {
     avatarUrl?: boolean
     discordUserId?: boolean
     strengths?: boolean
+    knowledgeAreas?: boolean
+    focusArea?: boolean
+    lastProfiledAt?: boolean
     currentLoad?: boolean
     burnoutSignal?: boolean
     createdAt?: boolean
@@ -6210,13 +6236,16 @@ export namespace Prisma {
     avatarUrl?: boolean
     discordUserId?: boolean
     strengths?: boolean
+    knowledgeAreas?: boolean
+    focusArea?: boolean
+    lastProfiledAt?: boolean
     currentLoad?: boolean
     burnoutSignal?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type DeveloperOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "orgId" | "githubLogin" | "githubId" | "name" | "avatarUrl" | "discordUserId" | "strengths" | "currentLoad" | "burnoutSignal" | "createdAt" | "updatedAt", ExtArgs["result"]["developer"]>
+  export type DeveloperOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "orgId" | "githubLogin" | "githubId" | "name" | "avatarUrl" | "discordUserId" | "strengths" | "knowledgeAreas" | "focusArea" | "lastProfiledAt" | "currentLoad" | "burnoutSignal" | "createdAt" | "updatedAt", ExtArgs["result"]["developer"]>
   export type DeveloperInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     org?: boolean | OrganizationDefaultArgs<ExtArgs>
     commits?: boolean | Developer$commitsArgs<ExtArgs>
@@ -6248,6 +6277,9 @@ export namespace Prisma {
       avatarUrl: string | null
       discordUserId: string | null
       strengths: string[]
+      knowledgeAreas: Prisma.JsonValue | null
+      focusArea: string | null
+      lastProfiledAt: Date | null
       currentLoad: number
       burnoutSignal: number
       createdAt: Date
@@ -6687,6 +6719,9 @@ export namespace Prisma {
     readonly avatarUrl: FieldRef<"Developer", 'String'>
     readonly discordUserId: FieldRef<"Developer", 'String'>
     readonly strengths: FieldRef<"Developer", 'String[]'>
+    readonly knowledgeAreas: FieldRef<"Developer", 'Json'>
+    readonly focusArea: FieldRef<"Developer", 'String'>
+    readonly lastProfiledAt: FieldRef<"Developer", 'DateTime'>
     readonly currentLoad: FieldRef<"Developer", 'Int'>
     readonly burnoutSignal: FieldRef<"Developer", 'Float'>
     readonly createdAt: FieldRef<"Developer", 'DateTime'>
@@ -16558,6 +16593,9 @@ export namespace Prisma {
     avatarUrl: 'avatarUrl',
     discordUserId: 'discordUserId',
     strengths: 'strengths',
+    knowledgeAreas: 'knowledgeAreas',
+    focusArea: 'focusArea',
+    lastProfiledAt: 'lastProfiledAt',
     currentLoad: 'currentLoad',
     burnoutSignal: 'burnoutSignal',
     createdAt: 'createdAt',
@@ -16700,6 +16738,14 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+  export const NullableJsonNullValueInput: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull
+  };
+
+  export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
   export const JsonNullValueInput: {
     JsonNull: typeof JsonNull
   };
@@ -16801,6 +16847,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -16867,20 +16927,6 @@ export namespace Prisma {
    * Reference to a field of type 'EmbeddingSource[]'
    */
   export type ListEnumEmbeddingSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EmbeddingSource[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Json'
-   */
-  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
-    
-
-
-  /**
-   * Reference to a field of type 'QueryMode'
-   */
-  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
   /**
    * Deep Input Types
@@ -17136,6 +17182,9 @@ export namespace Prisma {
     avatarUrl?: StringNullableFilter<"Developer"> | string | null
     discordUserId?: StringNullableFilter<"Developer"> | string | null
     strengths?: StringNullableListFilter<"Developer">
+    knowledgeAreas?: JsonNullableFilter<"Developer">
+    focusArea?: StringNullableFilter<"Developer"> | string | null
+    lastProfiledAt?: DateTimeNullableFilter<"Developer"> | Date | string | null
     currentLoad?: IntFilter<"Developer"> | number
     burnoutSignal?: FloatFilter<"Developer"> | number
     createdAt?: DateTimeFilter<"Developer"> | Date | string
@@ -17155,6 +17204,9 @@ export namespace Prisma {
     avatarUrl?: SortOrderInput | SortOrder
     discordUserId?: SortOrderInput | SortOrder
     strengths?: SortOrder
+    knowledgeAreas?: SortOrderInput | SortOrder
+    focusArea?: SortOrderInput | SortOrder
+    lastProfiledAt?: SortOrderInput | SortOrder
     currentLoad?: SortOrder
     burnoutSignal?: SortOrder
     createdAt?: SortOrder
@@ -17178,6 +17230,9 @@ export namespace Prisma {
     avatarUrl?: StringNullableFilter<"Developer"> | string | null
     discordUserId?: StringNullableFilter<"Developer"> | string | null
     strengths?: StringNullableListFilter<"Developer">
+    knowledgeAreas?: JsonNullableFilter<"Developer">
+    focusArea?: StringNullableFilter<"Developer"> | string | null
+    lastProfiledAt?: DateTimeNullableFilter<"Developer"> | Date | string | null
     currentLoad?: IntFilter<"Developer"> | number
     burnoutSignal?: FloatFilter<"Developer"> | number
     createdAt?: DateTimeFilter<"Developer"> | Date | string
@@ -17197,6 +17252,9 @@ export namespace Prisma {
     avatarUrl?: SortOrderInput | SortOrder
     discordUserId?: SortOrderInput | SortOrder
     strengths?: SortOrder
+    knowledgeAreas?: SortOrderInput | SortOrder
+    focusArea?: SortOrderInput | SortOrder
+    lastProfiledAt?: SortOrderInput | SortOrder
     currentLoad?: SortOrder
     burnoutSignal?: SortOrder
     createdAt?: SortOrder
@@ -17220,6 +17278,9 @@ export namespace Prisma {
     avatarUrl?: StringNullableWithAggregatesFilter<"Developer"> | string | null
     discordUserId?: StringNullableWithAggregatesFilter<"Developer"> | string | null
     strengths?: StringNullableListFilter<"Developer">
+    knowledgeAreas?: JsonNullableWithAggregatesFilter<"Developer">
+    focusArea?: StringNullableWithAggregatesFilter<"Developer"> | string | null
+    lastProfiledAt?: DateTimeNullableWithAggregatesFilter<"Developer"> | Date | string | null
     currentLoad?: IntWithAggregatesFilter<"Developer"> | number
     burnoutSignal?: FloatWithAggregatesFilter<"Developer"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Developer"> | Date | string
@@ -18161,6 +18222,9 @@ export namespace Prisma {
     avatarUrl?: string | null
     discordUserId?: string | null
     strengths?: DeveloperCreatestrengthsInput | string[]
+    knowledgeAreas?: NullableJsonNullValueInput | InputJsonValue
+    focusArea?: string | null
+    lastProfiledAt?: Date | string | null
     currentLoad?: number
     burnoutSignal?: number
     createdAt?: Date | string
@@ -18180,6 +18244,9 @@ export namespace Prisma {
     avatarUrl?: string | null
     discordUserId?: string | null
     strengths?: DeveloperCreatestrengthsInput | string[]
+    knowledgeAreas?: NullableJsonNullValueInput | InputJsonValue
+    focusArea?: string | null
+    lastProfiledAt?: Date | string | null
     currentLoad?: number
     burnoutSignal?: number
     createdAt?: Date | string
@@ -18197,6 +18264,9 @@ export namespace Prisma {
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     discordUserId?: NullableStringFieldUpdateOperationsInput | string | null
     strengths?: DeveloperUpdatestrengthsInput | string[]
+    knowledgeAreas?: NullableJsonNullValueInput | InputJsonValue
+    focusArea?: NullableStringFieldUpdateOperationsInput | string | null
+    lastProfiledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     currentLoad?: IntFieldUpdateOperationsInput | number
     burnoutSignal?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18216,6 +18286,9 @@ export namespace Prisma {
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     discordUserId?: NullableStringFieldUpdateOperationsInput | string | null
     strengths?: DeveloperUpdatestrengthsInput | string[]
+    knowledgeAreas?: NullableJsonNullValueInput | InputJsonValue
+    focusArea?: NullableStringFieldUpdateOperationsInput | string | null
+    lastProfiledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     currentLoad?: IntFieldUpdateOperationsInput | number
     burnoutSignal?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18234,6 +18307,9 @@ export namespace Prisma {
     avatarUrl?: string | null
     discordUserId?: string | null
     strengths?: DeveloperCreatestrengthsInput | string[]
+    knowledgeAreas?: NullableJsonNullValueInput | InputJsonValue
+    focusArea?: string | null
+    lastProfiledAt?: Date | string | null
     currentLoad?: number
     burnoutSignal?: number
     createdAt?: Date | string
@@ -18248,6 +18324,9 @@ export namespace Prisma {
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     discordUserId?: NullableStringFieldUpdateOperationsInput | string | null
     strengths?: DeveloperUpdatestrengthsInput | string[]
+    knowledgeAreas?: NullableJsonNullValueInput | InputJsonValue
+    focusArea?: NullableStringFieldUpdateOperationsInput | string | null
+    lastProfiledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     currentLoad?: IntFieldUpdateOperationsInput | number
     burnoutSignal?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18263,6 +18342,9 @@ export namespace Prisma {
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     discordUserId?: NullableStringFieldUpdateOperationsInput | string | null
     strengths?: DeveloperUpdatestrengthsInput | string[]
+    knowledgeAreas?: NullableJsonNullValueInput | InputJsonValue
+    focusArea?: NullableStringFieldUpdateOperationsInput | string | null
+    lastProfiledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     currentLoad?: IntFieldUpdateOperationsInput | number
     burnoutSignal?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19346,6 +19428,40 @@ export namespace Prisma {
     hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
     isEmpty?: boolean
   }
+  export type JsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
 
   export type FloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
@@ -19372,6 +19488,9 @@ export namespace Prisma {
     avatarUrl?: SortOrder
     discordUserId?: SortOrder
     strengths?: SortOrder
+    knowledgeAreas?: SortOrder
+    focusArea?: SortOrder
+    lastProfiledAt?: SortOrder
     currentLoad?: SortOrder
     burnoutSignal?: SortOrder
     createdAt?: SortOrder
@@ -19392,6 +19511,8 @@ export namespace Prisma {
     name?: SortOrder
     avatarUrl?: SortOrder
     discordUserId?: SortOrder
+    focusArea?: SortOrder
+    lastProfiledAt?: SortOrder
     currentLoad?: SortOrder
     burnoutSignal?: SortOrder
     createdAt?: SortOrder
@@ -19406,6 +19527,8 @@ export namespace Prisma {
     name?: SortOrder
     avatarUrl?: SortOrder
     discordUserId?: SortOrder
+    focusArea?: SortOrder
+    lastProfiledAt?: SortOrder
     currentLoad?: SortOrder
     burnoutSignal?: SortOrder
     createdAt?: SortOrder
@@ -19416,6 +19539,46 @@ export namespace Prisma {
     githubId?: SortOrder
     currentLoad?: SortOrder
     burnoutSignal?: SortOrder
+  }
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedJsonNullableFilter<$PrismaModel>
+    _max?: NestedJsonNullableFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type FloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -19502,17 +19665,6 @@ export namespace Prisma {
     not?: NestedEnumPRStateFilter<$PrismaModel> | $Enums.PRState
   }
 
-  export type DateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
   export type PullRequestCountOrderByAggregateInput = {
     id?: SortOrder
     orgId?: SortOrder
@@ -19591,20 +19743,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumPRStateFilter<$PrismaModel>
     _max?: NestedEnumPRStateFilter<$PrismaModel>
-  }
-
-  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type EnumMeetingTypeFilter<$PrismaModel = never> = {
@@ -20675,6 +20813,10 @@ export namespace Prisma {
     push?: string | string[]
   }
 
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
   export type FloatFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -20837,10 +20979,6 @@ export namespace Prisma {
 
   export type EnumPRStateFieldUpdateOperationsInput = {
     set?: $Enums.PRState
-  }
-
-  export type NullableDateTimeFieldUpdateOperationsInput = {
-    set?: Date | string | null
   }
 
   export type OrganizationUpdateOneRequiredWithoutPullRequestsNestedInput = {
@@ -21310,6 +21448,54 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+  export type NestedJsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -21333,17 +21519,6 @@ export namespace Prisma {
     not?: NestedEnumPRStateFilter<$PrismaModel> | $Enums.PRState
   }
 
-  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
   export type NestedEnumPRStateWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.PRState | EnumPRStateFieldRefInput<$PrismaModel>
     in?: $Enums.PRState[] | ListEnumPRStateFieldRefInput<$PrismaModel>
@@ -21352,20 +21527,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumPRStateFilter<$PrismaModel>
     _max?: NestedEnumPRStateFilter<$PrismaModel>
-  }
-
-  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type NestedEnumMeetingTypeFilter<$PrismaModel = never> = {
@@ -21539,6 +21700,9 @@ export namespace Prisma {
     avatarUrl?: string | null
     discordUserId?: string | null
     strengths?: DeveloperCreatestrengthsInput | string[]
+    knowledgeAreas?: NullableJsonNullValueInput | InputJsonValue
+    focusArea?: string | null
+    lastProfiledAt?: Date | string | null
     currentLoad?: number
     burnoutSignal?: number
     createdAt?: Date | string
@@ -21556,6 +21720,9 @@ export namespace Prisma {
     avatarUrl?: string | null
     discordUserId?: string | null
     strengths?: DeveloperCreatestrengthsInput | string[]
+    knowledgeAreas?: NullableJsonNullValueInput | InputJsonValue
+    focusArea?: string | null
+    lastProfiledAt?: Date | string | null
     currentLoad?: number
     burnoutSignal?: number
     createdAt?: Date | string
@@ -21931,6 +22098,9 @@ export namespace Prisma {
     avatarUrl?: StringNullableFilter<"Developer"> | string | null
     discordUserId?: StringNullableFilter<"Developer"> | string | null
     strengths?: StringNullableListFilter<"Developer">
+    knowledgeAreas?: JsonNullableFilter<"Developer">
+    focusArea?: StringNullableFilter<"Developer"> | string | null
+    lastProfiledAt?: DateTimeNullableFilter<"Developer"> | Date | string | null
     currentLoad?: IntFilter<"Developer"> | number
     burnoutSignal?: FloatFilter<"Developer"> | number
     createdAt?: DateTimeFilter<"Developer"> | Date | string
@@ -22886,6 +23056,9 @@ export namespace Prisma {
     avatarUrl?: string | null
     discordUserId?: string | null
     strengths?: DeveloperCreatestrengthsInput | string[]
+    knowledgeAreas?: NullableJsonNullValueInput | InputJsonValue
+    focusArea?: string | null
+    lastProfiledAt?: Date | string | null
     currentLoad?: number
     burnoutSignal?: number
     createdAt?: Date | string
@@ -22904,6 +23077,9 @@ export namespace Prisma {
     avatarUrl?: string | null
     discordUserId?: string | null
     strengths?: DeveloperCreatestrengthsInput | string[]
+    knowledgeAreas?: NullableJsonNullValueInput | InputJsonValue
+    focusArea?: string | null
+    lastProfiledAt?: Date | string | null
     currentLoad?: number
     burnoutSignal?: number
     createdAt?: Date | string
@@ -23028,6 +23204,9 @@ export namespace Prisma {
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     discordUserId?: NullableStringFieldUpdateOperationsInput | string | null
     strengths?: DeveloperUpdatestrengthsInput | string[]
+    knowledgeAreas?: NullableJsonNullValueInput | InputJsonValue
+    focusArea?: NullableStringFieldUpdateOperationsInput | string | null
+    lastProfiledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     currentLoad?: IntFieldUpdateOperationsInput | number
     burnoutSignal?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23046,6 +23225,9 @@ export namespace Prisma {
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     discordUserId?: NullableStringFieldUpdateOperationsInput | string | null
     strengths?: DeveloperUpdatestrengthsInput | string[]
+    knowledgeAreas?: NullableJsonNullValueInput | InputJsonValue
+    focusArea?: NullableStringFieldUpdateOperationsInput | string | null
+    lastProfiledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     currentLoad?: IntFieldUpdateOperationsInput | number
     burnoutSignal?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23142,6 +23324,9 @@ export namespace Prisma {
     avatarUrl?: string | null
     discordUserId?: string | null
     strengths?: DeveloperCreatestrengthsInput | string[]
+    knowledgeAreas?: NullableJsonNullValueInput | InputJsonValue
+    focusArea?: string | null
+    lastProfiledAt?: Date | string | null
     currentLoad?: number
     burnoutSignal?: number
     createdAt?: Date | string
@@ -23160,6 +23345,9 @@ export namespace Prisma {
     avatarUrl?: string | null
     discordUserId?: string | null
     strengths?: DeveloperCreatestrengthsInput | string[]
+    knowledgeAreas?: NullableJsonNullValueInput | InputJsonValue
+    focusArea?: string | null
+    lastProfiledAt?: Date | string | null
     currentLoad?: number
     burnoutSignal?: number
     createdAt?: Date | string
@@ -23284,6 +23472,9 @@ export namespace Prisma {
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     discordUserId?: NullableStringFieldUpdateOperationsInput | string | null
     strengths?: DeveloperUpdatestrengthsInput | string[]
+    knowledgeAreas?: NullableJsonNullValueInput | InputJsonValue
+    focusArea?: NullableStringFieldUpdateOperationsInput | string | null
+    lastProfiledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     currentLoad?: IntFieldUpdateOperationsInput | number
     burnoutSignal?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23302,6 +23493,9 @@ export namespace Prisma {
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     discordUserId?: NullableStringFieldUpdateOperationsInput | string | null
     strengths?: DeveloperUpdatestrengthsInput | string[]
+    knowledgeAreas?: NullableJsonNullValueInput | InputJsonValue
+    focusArea?: NullableStringFieldUpdateOperationsInput | string | null
+    lastProfiledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     currentLoad?: IntFieldUpdateOperationsInput | number
     burnoutSignal?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23546,6 +23740,9 @@ export namespace Prisma {
     avatarUrl?: string | null
     discordUserId?: string | null
     strengths?: DeveloperCreatestrengthsInput | string[]
+    knowledgeAreas?: NullableJsonNullValueInput | InputJsonValue
+    focusArea?: string | null
+    lastProfiledAt?: Date | string | null
     currentLoad?: number
     burnoutSignal?: number
     createdAt?: Date | string
@@ -23564,6 +23761,9 @@ export namespace Prisma {
     avatarUrl?: string | null
     discordUserId?: string | null
     strengths?: DeveloperCreatestrengthsInput | string[]
+    knowledgeAreas?: NullableJsonNullValueInput | InputJsonValue
+    focusArea?: string | null
+    lastProfiledAt?: Date | string | null
     currentLoad?: number
     burnoutSignal?: number
     createdAt?: Date | string
@@ -23686,6 +23886,9 @@ export namespace Prisma {
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     discordUserId?: NullableStringFieldUpdateOperationsInput | string | null
     strengths?: DeveloperUpdatestrengthsInput | string[]
+    knowledgeAreas?: NullableJsonNullValueInput | InputJsonValue
+    focusArea?: NullableStringFieldUpdateOperationsInput | string | null
+    lastProfiledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     currentLoad?: IntFieldUpdateOperationsInput | number
     burnoutSignal?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23704,6 +23907,9 @@ export namespace Prisma {
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     discordUserId?: NullableStringFieldUpdateOperationsInput | string | null
     strengths?: DeveloperUpdatestrengthsInput | string[]
+    knowledgeAreas?: NullableJsonNullValueInput | InputJsonValue
+    focusArea?: NullableStringFieldUpdateOperationsInput | string | null
+    lastProfiledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     currentLoad?: IntFieldUpdateOperationsInput | number
     burnoutSignal?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24290,6 +24496,9 @@ export namespace Prisma {
     avatarUrl?: string | null
     discordUserId?: string | null
     strengths?: DeveloperCreatestrengthsInput | string[]
+    knowledgeAreas?: NullableJsonNullValueInput | InputJsonValue
+    focusArea?: string | null
+    lastProfiledAt?: Date | string | null
     currentLoad?: number
     burnoutSignal?: number
     createdAt?: Date | string
@@ -24457,6 +24666,9 @@ export namespace Prisma {
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     discordUserId?: NullableStringFieldUpdateOperationsInput | string | null
     strengths?: DeveloperUpdatestrengthsInput | string[]
+    knowledgeAreas?: NullableJsonNullValueInput | InputJsonValue
+    focusArea?: NullableStringFieldUpdateOperationsInput | string | null
+    lastProfiledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     currentLoad?: IntFieldUpdateOperationsInput | number
     burnoutSignal?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24474,6 +24686,9 @@ export namespace Prisma {
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     discordUserId?: NullableStringFieldUpdateOperationsInput | string | null
     strengths?: DeveloperUpdatestrengthsInput | string[]
+    knowledgeAreas?: NullableJsonNullValueInput | InputJsonValue
+    focusArea?: NullableStringFieldUpdateOperationsInput | string | null
+    lastProfiledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     currentLoad?: IntFieldUpdateOperationsInput | number
     burnoutSignal?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24491,6 +24706,9 @@ export namespace Prisma {
     avatarUrl?: NullableStringFieldUpdateOperationsInput | string | null
     discordUserId?: NullableStringFieldUpdateOperationsInput | string | null
     strengths?: DeveloperUpdatestrengthsInput | string[]
+    knowledgeAreas?: NullableJsonNullValueInput | InputJsonValue
+    focusArea?: NullableStringFieldUpdateOperationsInput | string | null
+    lastProfiledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     currentLoad?: IntFieldUpdateOperationsInput | number
     burnoutSignal?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string

@@ -15,3 +15,5 @@ export {
 export type { CommitHygieneScore, PRHealthScore, DeveloperLoadScore } from "./analysis";
 export { ingestRepository, ingestCommit, upsertDeveloper, ingestPullRequest, incrementPRReviewCycles } from "./ingest";
 export { ingestCommitDetail, syncRepoCommits } from "./sync";
+export { updateDeveloperProfile, updateAllDeveloperProfiles } from "./profiling";
+export type { KnowledgeAreas } from "./profiling";

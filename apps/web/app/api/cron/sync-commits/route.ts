@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createOctokitClient, syncRepoCommits } from "@lucyn/github";
+import { createOctokitClient, syncRepoCommits, updateAllDeveloperProfiles } from "@lucyn/github";
 import { prisma } from "@lucyn/db";
 
 // Vercel sets Authorization: Bearer <CRON_SECRET> when invoking cron routes.
@@ -46,5 +46,21 @@ export async function GET(request: NextRequest) {
   const total = results.reduce((sum, r) => sum + r.count, 0);
   console.log(`[cron/sync-commits] Done — ${total} commit(s) across ${repos.length} repo(s)`);
 
-  return NextResponse.json({ synced: results, total });
+  // Refresh developer knowledge profiles for every org that had repos synced
+  const orgIds = [...new Set(repos.map((r) => r.orgId))];
+  const profileResults: Array<{ orgId: string; updated: number; error?: string }> = [];
+
+  for (const orgId of orgIds) {
+    try {
+      const updated = await updateAllDeveloperProfiles(orgId);
+      profileResults.push({ orgId, updated });
+      console.log(`[cron/sync-commits] Profiles refreshed for org ${orgId}: ${updated} developer(s)`);
+    } catch (err) {
+      const error = err instanceof Error ? err.message : String(err);
+      profileResults.push({ orgId, updated: 0, error });
+      console.error(`[cron/sync-commits] Profile refresh failed for org ${orgId}:`, err);
+    }
+  }
+
+  return NextResponse.json({ synced: results, total, profiles: profileResults });
 }
